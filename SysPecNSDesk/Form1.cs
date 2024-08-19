@@ -117,8 +117,6 @@ namespace SysPecNSDesk
             {
                 btnConfirmar.Enabled = true;
             }         
-            else if (txtNumero1.Text.Length != 0 && cmbOperacao.SelectedIndex == 5 ) 
-            { btnConfirmar.Enabled = true; }
             else
             {
                 btnConfirmar.Enabled = false;
