@@ -8,6 +8,6 @@ namespace SysPecNSLib
 {
     public class Produto
     {
-        public Produto() { }
+        
     }
 }
