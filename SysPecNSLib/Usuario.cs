@@ -8,12 +8,8 @@ namespace SysPecNSLib
 {
     public class Usuario
     {
-        /// <summary>
-        /// dsadsasdasd
-        /// </summary>
-        /// <param name="id">inteiro wqadsa</param>
-        /// <param name="flaus">flaus dsadawdsa</param>
-      public void inserir(int id,string flaus)
+       
+      public void inserir()
         {
             var cmd = Banco.Abrir();
         }

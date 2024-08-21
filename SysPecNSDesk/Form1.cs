@@ -28,22 +28,22 @@ namespace SysPecNSDesk
 
             double numero2 = 0;
             double a = 0;
-            
 
-            
-                if (txtNumero2.Text != string.Empty)
-                {
-                    numero2 = Convert.ToDouble(txtNumero2.Text);
-                   
-                    a = numero2;
 
-                }
 
-            
+            if (txtNumero2.Text != string.Empty)
+            {
+                numero2 = Convert.ToDouble(txtNumero2.Text);
 
-            
-            
-           
+                a = numero2;
+
+            }
+
+
+
+
+
+
 
             double resultado = 0;
             switch (posicaoOperacao)
@@ -64,10 +64,10 @@ namespace SysPecNSDesk
                     resultado = Math.Pow(numero1, numero2);
                     break;
                 case 5:
-                    resultado = Math.Pow(numero1,1/numero2);
+                    resultado = Math.Pow(numero1, 1 / numero2);
                     break;
                 case 6:
-                    resultado = Math.Log(numero1,a);
+                    resultado = Math.Log(numero1, a);
                     break;
                 default:
                     break;
@@ -108,7 +108,7 @@ namespace SysPecNSDesk
                 btnConfirmar.Enabled = false;
             }
 
-                    
+
         }
 
         private void txtNumero1_TextChanged(object sender, EventArgs e)
@@ -116,7 +116,7 @@ namespace SysPecNSDesk
             if (txtNumero1.Text.Length != 0 && cmbOperacao.SelectedIndex >= 0 && txtNumero2.Text.Length != 0)
             {
                 btnConfirmar.Enabled = true;
-            }         
+            }
             else
             {
                 btnConfirmar.Enabled = false;
@@ -130,20 +130,28 @@ namespace SysPecNSDesk
 
         private void cmbOperacao_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-           /* if (cmbOperacao.SelectedIndex !=5)
-            {
-                txtNumero2.Enabled = true;
-            }
-            else
-            {
-                txtNumero2.Enabled = false;
-                
-            }*/
-            txtNumero1.Clear(); 
+
+            /* if (cmbOperacao.SelectedIndex !=5)
+             {
+                 txtNumero2.Enabled = true;
+             }
+             else
+             {
+                 txtNumero2.Enabled = false;
+
+             }*/
+            txtNumero1.Clear();
             txtNumero2.Clear();
             txtNumero1.Focus();
             btnConfirmar.Enabled = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Nivel nivel = new Nivel(textBox1.Text,textBox2.Text);
+            nivel.Inserir();
+            MessageBox.Show("Nivel gravado com sucesso!!!!");
+            button1.Enabled = false; 
         }
     }
 }
