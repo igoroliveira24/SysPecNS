@@ -15,7 +15,6 @@ namespace SysPecNSLib
     {
         // atributos (campo)
        
-
         // propriedades
         public int Id { get; set; }
         public string? Nome { get; set; }
@@ -38,8 +37,6 @@ namespace SysPecNSLib
             Sigla = sigla;
         }
 
-
-
         //métodos (requisitos)
         /// <summary>
         /// Método para inserir registro de nível na base de dados 
@@ -60,7 +57,7 @@ namespace SysPecNSLib
             cmd.CommandType = CommandType.Text;//cmd tipo string ou tipe texto
             cmd.CommandText = $"select * from niveis where id = {id};"; //cmd conversa com o banco de dados e faz o comando que esta em interpolação
             var dr = cmd.ExecuteReader(); // a variavel dr recebe a tabela que selecionamos com o comando acima
-            while (dr.Read()) // enquanto o dr ler algo na tabela 
+            if (dr.Read()) // se o dr ler algo na tabela 
             {
 
                 nivel.Id = dr.GetInt32(0);// nivel.id recebe o que o dr lê na casa 0 da tabela
@@ -98,17 +95,19 @@ namespace SysPecNSLib
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"update niveis" + 
                 $"set nome = '{Nome}', sigla = '{Sigla}' where id = {Id}";
-            return cmd.ExecuteNonQuery() > 0 ? true : false;// neste caso return simula é um comando, "?" simula o se pegando o comando executado como true, ":" retorna falso 
-            
-                
-            
-
-           
+            return cmd.ExecuteNonQuery() > 0 ? true : false;// neste caso return é um comando que retorna alguma coisa com verificações em booleano, "?" simula o se pegando o comando executado como true, ":" retorna falso 
+                      
         }
             
-        public void ExcluirNivel(int id)
+        public void ExcluirNivel()
         {
+            //em geral nada se exclui de uma tabela
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"delete from niveis where id = {Id};";
+            cmd.ExecuteNonQuery();
             
+
         }
     }
 }
