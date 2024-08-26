@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Security.Cryptography;
 using static Mysqlx.Notice.Warning.Types;
+using Google.Protobuf;
+using Mysqlx.Prepare;
 
 namespace SysPecNSLib
 {
     public class Usuario
-    {
-        
-
+    {        
         public int Id { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
@@ -66,6 +66,7 @@ namespace SysPecNSLib
             {
                 Id = dr.GetInt32(0);
             }
+            cmd.Connection.Close();
         }
         public static Usuario ObterPorID(int id)
         {
@@ -88,6 +89,7 @@ namespace SysPecNSLib
                     dr.GetBoolean(5)//o leitor lera o conteudo reservado na posição 5 como booleano
                     ) ;
             }
+            cmd.Connection.Close();
             return usuario;
         }
         public static List<Usuario> ObterLista()
@@ -112,7 +114,7 @@ namespace SysPecNSLib
                         )
                     );
             }
-
+            cmd.Connection.Close();
             return lista;
         }
         public static Usuario EfetuarLogin(string email, string senha)
@@ -135,6 +137,7 @@ namespace SysPecNSLib
                     dr.GetBoolean(5)//o leitor lera o conteudo reservado na posição 5 como booleano
                     );
             }
+            cmd.Connection.Close();
             return usuario;
         }
         public void Atualizar()
@@ -144,25 +147,28 @@ namespace SysPecNSLib
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_usuario_altera";
+            cmd.Parameters.AddWithValue("spid", Id);
             cmd.Parameters.AddWithValue("spnome", Nome);
-            cmd.Parameters.AddWithValue("spemail", Email);
             cmd.Parameters.AddWithValue("spsenha", Senha);
             cmd.Parameters.AddWithValue("spnivel", Nivel.Id);
-            var dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                Id = dr.GetInt32(0);
-            }
-
-
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
         }
-        public void Aquivar()
-        {            
-
-        }
-        public void Restaurar()
+        public static void Aquivar(int id)
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"update usuarios set ativo = 0 where id = {id}";
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+        }
+        public static void Restaurar(int id)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"update usuarios set ativo = 1 where id = {id}";
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
         }
             
 
