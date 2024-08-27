@@ -17,7 +17,7 @@ namespace SysPecNSDesk
         {
             InitializeComponent();
         }
-        int cont = 0;
+
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
             // carregando o combobox de niveis
@@ -26,20 +26,7 @@ namespace SysPecNSDesk
             cmbNivel.DisplayMember = "Nome";
             cmbNivel.ValueMember = "Id";
 
-            //preenchendo o data greed com os usuarios
-
-            var lista = Usuario.ObterLista();
-            dgvUsuarios.Rows.Clear();
-            foreach (var usuario in lista)
-            {
-                dgvUsuarios.Rows.Add();
-                dgvUsuarios.Rows[cont].Cells[0].Value = usuario.Id;
-                dgvUsuarios.Rows[cont].Cells[1].Value = usuario.Nome;
-                dgvUsuarios.Rows[cont].Cells[2].Value = usuario.Email;
-                dgvUsuarios.Rows[cont].Cells[3].Value = usuario.Nivel.Nome;
-                dgvUsuarios.Rows[cont].Cells[4].Value = usuario.Ativo;
-                cont++;
-            }
+            CarregaGrid();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -54,8 +41,65 @@ namespace SysPecNSDesk
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(cmbNivel.SelectedValue.ToString);
-            Usuario usuario = new();
+
+            Usuario usuario = new(
+                txtNome.Text,
+                txtEmail.Text,
+                txtSenha.Text,
+                Nivel.ObterPorId(Convert.ToInt32(cmbNivel.SelectedValue))
+                );
+            usuario.Inserir();
+            if (usuario.Id > 0)
+            {
+                txtId.Text = usuario.Id.ToString();
+                MessageBox.Show($"O usuario {usuario.Nome}, " +
+                    $"foi inserido com sucesso , com o ID {usuario.Id}");
+                txtId.Clear();
+                txtNome.Clear();
+                txtEmail.Clear();
+                txtSenha.Clear();
+                txtConfSenha.Clear();
+                txtNome.Focus();
+
+                FrmUsuario_Load(sender, e);// não sei o que é
+            }
+            else
+            {
+                MessageBox.Show("Falha ao gravar");
+            }
+
+
+
+        }
+
+        private void txtBusca_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBusca.Text.Length > 0)
+            {
+                CarregaGrid(txtBusca.Text);
+            }
+            else 
+            {
+                CarregaGrid();
+            }
+        }
+        private void CarregaGrid(string nome = "")
+        {
+            //preenchendo o data greed com os usuarios
+            
+            var lista = Usuario.ObterLista(nome);
+            dgvUsuarios.Rows.Clear();
+            int cont = 0;
+            foreach (var usuario in lista)// para cada usuario na lista
+            {
+                dgvUsuarios.Rows.Add();//linhas do datagrid usuarios adiciona
+                dgvUsuarios.Rows[cont].Cells[0].Value = usuario.Id;//linhas do datagrid usuarios com linha varivael cont e coluna 0 vale usuario id
+                dgvUsuarios.Rows[cont].Cells[1].Value = usuario.Nome;//linhas do datagrid usuarios com linha varivael cont e coluna 1 vale usuario nome
+                dgvUsuarios.Rows[cont].Cells[2].Value = usuario.Email;//linhas do datagrid usuarios com linha varivael cont e coluna 2 vale usuario Email
+                dgvUsuarios.Rows[cont].Cells[3].Value = usuario.Nivel.Nome;//linhas do datagrid usuarios com linha varivael cont e coluna 3 vale nome de objeto nivel com a variavel usuario
+                dgvUsuarios.Rows[cont].Cells[4].Value = usuario.Ativo;//linhas do datagrid usuarios com linha varivael cont e coluna 4 vale ativo de objeto usuario 
+                cont++;//{cont esta em loop para listar os usuarios}
+            }
             
         }
     }
