@@ -78,7 +78,7 @@ namespace SysPecNSDesk
             {
                 CarregaGrid(txtBusca.Text);
             }
-            else 
+            else
             {
                 CarregaGrid();
             }
@@ -86,7 +86,7 @@ namespace SysPecNSDesk
         private void CarregaGrid(string nome = "")
         {
             //preenchendo o data greed com os usuarios
-            
+
             var lista = Usuario.ObterLista(nome);
             dgvUsuarios.Rows.Clear();
             int cont = 0;
@@ -100,7 +100,12 @@ namespace SysPecNSDesk
                 dgvUsuarios.Rows[cont].Cells[4].Value = usuario.Ativo;//linhas do datagrid usuarios com linha varivael cont e coluna 4 vale ativo de objeto usuario 
                 cont++;//{cont esta em loop para listar os usuarios}
             }
-            
+
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

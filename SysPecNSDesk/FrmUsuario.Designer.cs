@@ -168,6 +168,7 @@
             txtId.Name = "txtId";
             txtId.Size = new Size(60, 23);
             txtId.TabIndex = 7;
+            txtId.TextChanged += txtId_TextChanged;
             // 
             // txtNome
             // 

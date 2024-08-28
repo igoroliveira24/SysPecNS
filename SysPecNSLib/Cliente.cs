@@ -17,16 +17,20 @@ namespace SysPecNSLib
     {
         public int Id { get; set; }
         public string? Nome { get; set; }
-        public int CPF { get; set; }
-        public int Telefone { get; set; }
+        public string? CPF { get; set; }
+        public string? Telefone { get; set; }
         public string? Email { get; set; }
         public DateTime Data_nasc { get; set; }
         public DateTime Data_cad { get; set; }
         public bool Ativo { get; set; }
-
-        public Cliente() { }
+        public List<Endereco> Endereco { get; set; }
         
-        public Cliente(string? nome, int cpf, int telefone, string? email, DateTime data_nasc, DateTime data_cad)
+
+        public Cliente() 
+        {
+            Id = 0;
+        }
+        public Cliente(string? nome, string? cpf, string? telefone, string? email, DateTime data_nasc)
         {
 
             Nome = nome;
@@ -34,13 +38,15 @@ namespace SysPecNSLib
             Telefone = telefone;
             Email = email;
             Data_nasc = data_nasc;
-            Data_cad = data_cad;
             
+            
+
+
         }
 
-        public Cliente( string? nome, int cpf, int telefone, string? email, DateTime data_nasc, DateTime data_cad, bool ativo)
+        public Cliente(string? nome, string? cpf, string? telefone, string? email, DateTime data_nasc, DateTime data_cad, bool ativo)
         {
-            
+
             Nome = nome;
             CPF = cpf;
             Telefone = telefone;
@@ -50,7 +56,20 @@ namespace SysPecNSLib
             Ativo = ativo;
         }
 
-        public Cliente(int id, string? nome, int cpf, int telefone,string? email,DateTime data_nasc,DateTime data_cad,bool ativo  )
+        public Cliente( string? nome, string? cpf, string? telefone, string? email, DateTime data_nasc, DateTime data_cad, bool ativo, Endereco Endereco)
+        {
+            
+            Nome = nome;
+            CPF = cpf;
+            Telefone = telefone;
+            Email = email;
+            Data_nasc = data_nasc;
+            Data_cad = data_cad;
+            Ativo = ativo;
+            Endereco = Endereco;
+        }
+
+        public Cliente(int id, string? nome, string? cpf, string? telefone, string? email,DateTime data_nasc,DateTime data_cad,bool ativo,Endereco Endereco)
         {
             Id = id;
             Nome = nome;
@@ -60,6 +79,7 @@ namespace SysPecNSLib
             Data_nasc = data_nasc;
             Data_cad = data_cad;
             Ativo = ativo;
+            
         }
         
         public void Inserir()
@@ -69,6 +89,7 @@ namespace SysPecNSLib
             cmd.CommandText = "sp_cliente_insert";
             cmd.Parameters.AddWithValue("spnome", Nome);
             cmd.Parameters.AddWithValue("spcpf", CPF);
+            cmd.Parameters.AddWithValue("sptelefone", Telefone);
             cmd.Parameters.AddWithValue("spemail", Email);
             cmd.Parameters.AddWithValue("spdatanasc", Data_nasc);
             var dr = cmd.ExecuteReader();
@@ -91,12 +112,13 @@ namespace SysPecNSLib
                 cliente = new(
                     dr.GetInt32(0),
                     dr.GetString(1),
-                    dr.GetInt32(2),
-                    dr.GetInt32(3),
+                    dr.GetString(2),
+                    dr.GetString(3),
                     dr.GetString(4),
                     dr.GetDateTime(5),
                     dr.GetDateTime(6),
-                    dr.GetBoolean(7)
+                    dr.GetBoolean(7),
+                    Endereco.ObterListaPorCliente(dr.GetInt32(0))                   
                     );
             }
             cmd.Connection.Close();
@@ -110,11 +132,13 @@ namespace SysPecNSLib
             cmd.CommandType = CommandType.Text;
             if(nome == "")
             {
-                cmd.CommandText = "select * from clientes order by nome limit 10;";
+                cmd.CommandText = "select * from clientes " +                  
+                    "order by nome limit 10;";
             }
             else
             {
-                cmd.CommandText = $"select * from clientes where nome like '%{nome}% order by nome limit 10'";            
+                cmd.CommandText = $"select * from clientes" +                   
+                    "where nome like '%{nome}% order by nome limit 10';";            
             }
 
             var dr = cmd.ExecuteReader();
@@ -124,8 +148,8 @@ namespace SysPecNSLib
                     new(
                         dr.GetInt32(0),
                         dr.GetString(1),
-                        dr.GetInt32(2),
-                        dr.GetInt32(3),
+                        dr.GetString(2),
+                        dr.GetString(3),
                         dr.GetString(4),
                         dr.GetDateTime(5),
                         dr.GetDateTime(6),
@@ -141,7 +165,7 @@ namespace SysPecNSLib
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_cliente_update"
+            cmd.CommandText = "sp_cliente_update";
             cmd.Parameters.AddWithValue("spid", Id);
             cmd.Parameters.AddWithValue("spnome", Nome);
             cmd.Parameters.AddWithValue("sptelefone", Telefone);
