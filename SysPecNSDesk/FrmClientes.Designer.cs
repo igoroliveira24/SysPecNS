@@ -35,14 +35,6 @@
             label7 = new Label();
             dtmDataNasc = new DateTimePicker();
             dataGridView1 = new DataGridView();
-            Id = new DataGridViewTextBoxColumn();
-            Nome = new DataGridViewTextBoxColumn();
-            Cpf = new DataGridViewTextBoxColumn();
-            Telefone = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            Data_nasc = new DataGridViewTextBoxColumn();
-            Data_cad = new DataGridViewTextBoxColumn();
-            Ativo = new DataGridViewCheckBoxColumn();
             txtEmail = new TextBox();
             txtTelefone = new TextBox();
             txtCPF = new TextBox();
@@ -89,6 +81,14 @@
             txtTipo_Endereco = new TextBox();
             txtUF_Endereco = new TextBox();
             txtComplemento_Endereco = new TextBox();
+            Id = new DataGridViewTextBoxColumn();
+            Nome = new DataGridViewTextBoxColumn();
+            Cpf = new DataGridViewTextBoxColumn();
+            Telefone = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            Data_nasc = new DataGridViewTextBoxColumn();
+            Data_cad = new DataGridViewTextBoxColumn();
+            Ativo = new DataGridViewCheckBoxColumn();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -103,7 +103,7 @@
             tabControl1.Location = new Point(1, 1);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(797, 451);
+            tabControl1.Size = new Size(799, 447);
             tabControl1.TabIndex = 20;
             tabControl1.Tag = "";
             // 
@@ -129,7 +129,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(789, 423);
+            tabPage1.Size = new Size(791, 419);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Clientes";
             tabPage1.UseVisualStyleBackColor = true;
@@ -178,58 +178,7 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.Size = new Size(740, 166);
             dataGridView1.TabIndex = 32;
-            // 
-            // Id
-            // 
-            Id.Frozen = true;
-            Id.HeaderText = "ID";
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            Id.Width = 50;
-            // 
-            // Nome
-            // 
-            Nome.HeaderText = "NOME";
-            Nome.Name = "Nome";
-            Nome.ReadOnly = true;
-            Nome.Width = 150;
-            // 
-            // Cpf
-            // 
-            Cpf.HeaderText = "CPF";
-            Cpf.Name = "Cpf";
-            Cpf.ReadOnly = true;
-            // 
-            // Telefone
-            // 
-            Telefone.HeaderText = "TELEFONE";
-            Telefone.Name = "Telefone";
-            Telefone.ReadOnly = true;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            Email.Width = 150;
-            // 
-            // Data_nasc
-            // 
-            Data_nasc.HeaderText = "Data de Nascimento";
-            Data_nasc.Name = "Data_nasc";
-            Data_nasc.ReadOnly = true;
-            // 
-            // Data_cad
-            // 
-            Data_cad.HeaderText = "Cadastro";
-            Data_cad.Name = "Data_cad";
-            Data_cad.ReadOnly = true;
-            // 
-            // Ativo
-            // 
-            Ativo.HeaderText = "Ativo";
-            Ativo.Name = "Ativo";
-            Ativo.ReadOnly = true;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // txtEmail
             // 
@@ -358,7 +307,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(789, 423);
+            tabPage2.Size = new Size(791, 419);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Endereco";
             tabPage2.UseVisualStyleBackColor = true;
@@ -392,6 +341,7 @@
             dgvEndereco.RowHeadersVisible = false;
             dgvEndereco.Size = new Size(740, 166);
             dgvEndereco.TabIndex = 33;
+            dgvEndereco.CellContentClick += dgvEndereco_CellContentClick;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -616,11 +566,63 @@
             txtComplemento_Endereco.Size = new Size(142, 23);
             txtComplemento_Endereco.TabIndex = 0;
             // 
+            // Id
+            // 
+            Id.Frozen = true;
+            Id.HeaderText = "ID";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            Id.Width = 50;
+            // 
+            // Nome
+            // 
+            Nome.HeaderText = "NOME";
+            Nome.Name = "Nome";
+            Nome.ReadOnly = true;
+            Nome.Width = 150;
+            // 
+            // Cpf
+            // 
+            Cpf.HeaderText = "CPF";
+            Cpf.Name = "Cpf";
+            Cpf.ReadOnly = true;
+            // 
+            // Telefone
+            // 
+            Telefone.HeaderText = "TELEFONE";
+            Telefone.Name = "Telefone";
+            Telefone.ReadOnly = true;
+            // 
+            // Email
+            // 
+            Email.HeaderText = "Email";
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            Email.Width = 150;
+            // 
+            // Data_nasc
+            // 
+            Data_nasc.HeaderText = "Data de Nascimento";
+            Data_nasc.Name = "Data_nasc";
+            Data_nasc.ReadOnly = true;
+            // 
+            // Data_cad
+            // 
+            Data_cad.HeaderText = "Cadastro";
+            Data_cad.Name = "Data_cad";
+            Data_cad.ReadOnly = true;
+            // 
+            // Ativo
+            // 
+            Ativo.HeaderText = "Ativo";
+            Ativo.Name = "Ativo";
+            Ativo.ReadOnly = true;
+            // 
             // FrmClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 445);
             Controls.Add(tabControl1);
             Name = "FrmClientes";
             Text = "FrmClientes";
@@ -644,14 +646,6 @@
         private Label label7;
         private DateTimePicker dtmDataNasc;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Nome;
-        private DataGridViewTextBoxColumn Cpf;
-        private DataGridViewTextBoxColumn Telefone;
-        private DataGridViewTextBoxColumn Email;
-        private DataGridViewTextBoxColumn Data_nasc;
-        private DataGridViewTextBoxColumn Data_cad;
-        private DataGridViewCheckBoxColumn Ativo;
         private TextBox txtEmail;
         private TextBox txtTelefone;
         private TextBox txtCPF;
@@ -698,5 +692,13 @@
         private DataGridViewTextBoxColumn Cidade;
         private DataGridViewTextBoxColumn UF;
         private DataGridViewTextBoxColumn Tipo;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn Nome;
+        private DataGridViewTextBoxColumn Cpf;
+        private DataGridViewTextBoxColumn Telefone;
+        private DataGridViewTextBoxColumn Email;
+        private DataGridViewTextBoxColumn Data_nasc;
+        private DataGridViewTextBoxColumn Data_cad;
+        private DataGridViewCheckBoxColumn Ativo;
     }
 }

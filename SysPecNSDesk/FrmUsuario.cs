@@ -107,5 +107,59 @@ namespace SysPecNSDesk
         {
 
         }
+
+        private void cmbNivel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            if (VerificaControles())
+            {
+                var msg = MessageBox.Show
+                    ("Deseja continuar o cadastro?",
+                    "Confirmação de saida",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.ServiceNotification);
+
+                if (msg == DialogResult.No) this.Close();
+            }
+            else
+            {
+                this.Close();
+            }
+
+
+
+
+
+        }
+        private bool VerificaControles()
+        {
+            if (txtNome.Text != string.Empty
+                || txtEmail.Text != string.Empty
+                || txtSenha.Text != string.Empty
+                || txtConfSenha.Text != string.Empty
+                )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = 0;
+            int PosicaoLinha = dgvUsuarios.CurrentRow.Index;
+            id = Convert.ToInt32(dgvUsuarios.Rows[PosicaoLinha].Cells[0].Value);
+            MessageBox.Show(id.ToString());
+        }
     }
 }

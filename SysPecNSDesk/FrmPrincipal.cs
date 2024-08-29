@@ -32,5 +32,14 @@ namespace SysPecNSDesk
             frmClientes.MdiParent = this;
             frmClientes.Show();
         }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var msg = MessageBox.Show("Deseja sair?", "Confirmação de saida", MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2,MessageBoxOptions.ServiceNotification);
+            if (msg == DialogResult.Yes) Application.Exit();
+
+
+
+        }
     }
 }

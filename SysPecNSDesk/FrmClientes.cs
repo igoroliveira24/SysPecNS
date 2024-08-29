@@ -49,11 +49,11 @@ namespace SysPecNSDesk
                 txtEmail.Text,
                 txtCPF.Text,
                 txtTelefone.Text,
-                dtmDataNasc.Value,
-                
-            /* Endereco endereco = new(
-                 textEndereco.Text
-                 );*/
+                dtmDataNasc.Value);
+
+
+
+
 
             cliente.Inserir();
             if (cliente.Id > 0)
@@ -102,8 +102,9 @@ namespace SysPecNSDesk
                 dataGridView1.Rows[cont].Cells[3].Value = cliente.Telefone;//linhas do datagrid usuarios com linha varivael cont e coluna 4 vale ativo de objeto usuario 
                 dataGridView1.Rows[cont].Cells[4].Value = cliente.Email;
                 dataGridView1.Rows[cont].Cells[5].Value = cliente.Data_nasc;
-                dataGridView1.Rows[cont].Cells[6].Value = cliente.Data_cad;
-                dataGridView1.Rows[cont].Cells[7].Value = cliente.Ativo;
+                // dataGridView1.Rows[cont].Cells[6].Value = Endereco.ObterLista;
+                dataGridView1.Rows[cont].Cells[7].Value = cliente.Data_cad;
+                dataGridView1.Rows[cont].Cells[8].Value = cliente.Ativo;
                 cont++;//{cont esta em loop para listar os usuarios}
             }
 
@@ -116,17 +117,17 @@ namespace SysPecNSDesk
             int cont = 0;
             foreach (var endereco in lista)// para cada usuario na lista
             {
-                dataGridView1.Rows.Add();//linhas do datagrid usuarios adiciona
-                dataGridView1.Rows[cont].Cells[0].Value = endereco.Id;//linhas do datagrid usuarios com linha varivael cont e coluna 0 vale usuario id
-                dataGridView1.Rows[cont].Cells[1].Value = endereco.Cliente_id;//linhas do datagrid usuarios com linha varivael cont e coluna 2 vale usuario Email
-                dataGridView1.Rows[cont].Cells[2].Value = endereco.Cep;//linhas do datagrid usuarios com linha varivael cont e coluna 3 vale nome de objeto nivel com a variavel usuario
-                dataGridView1.Rows[cont].Cells[3].Value = endereco.Logradouro;//linhas do datagrid usuarios com linha varivael cont e coluna 4 vale ativo de objeto usuario 
-                dataGridView1.Rows[cont].Cells[4].Value = endereco.Numero;
-                dataGridView1.Rows[cont].Cells[5].Value = endereco.Complemento;
-                dataGridView1.Rows[cont].Cells[6].Value = endereco.Bairro;
-                dataGridView1.Rows[cont].Cells[7].Value = endereco.Cidade;
-                dataGridView1.Rows[cont].Cells[8].Value = endereco.UF;
-                dataGridView1.Rows[cont].Cells[9].Value = endereco.Tipo;
+                dgvEndereco.Rows.Add();//linhas do datagrid usuarios adiciona
+                dgvEndereco.Rows[cont].Cells[0].Value = endereco.Id;//linhas do datagrid usuarios com linha varivael cont e coluna 0 vale usuario id
+                dgvEndereco.Rows[cont].Cells[1].Value = endereco.Cliente_id.Nome;//linhas do datagrid usuarios com linha varivael cont e coluna 2 vale usuario Email
+                dgvEndereco.Rows[cont].Cells[2].Value = endereco.Cep;//linhas do datagrid usuarios com linha varivael cont e coluna 3 vale nome de objeto nivel com a variavel usuario
+                dgvEndereco.Rows[cont].Cells[3].Value = endereco.Logradouro;//linhas do datagrid usuarios com linha varivael cont e coluna 4 vale ativo de objeto usuario 
+                dgvEndereco.Rows[cont].Cells[4].Value = endereco.Numero;
+                dgvEndereco.Rows[cont].Cells[5].Value = endereco.Complemento;
+                dgvEndereco.Rows[cont].Cells[6].Value = endereco.Bairro;
+                dgvEndereco.Rows[cont].Cells[7].Value = endereco.Cidade;
+                dgvEndereco.Rows[cont].Cells[8].Value = endereco.UF;
+                dgvEndereco.Rows[cont].Cells[9].Value = endereco.Tipo;
                 cont++;//{cont esta em loop para listar os usuarios}
             }
 
@@ -164,10 +165,8 @@ namespace SysPecNSDesk
                 txtCidade_Endereco.Text,
                 txtUF_Endereco.Text,
                 txtTipo_Endereco.Text
-                ) ;
-            /* Endereco endereco = new(
-                 textEndereco.Text
-                 );*/
+                );
+
 
             endereco.Inserir();
             if (endereco.Id > 0)
@@ -176,11 +175,15 @@ namespace SysPecNSDesk
                 txtidCliente_Endereco.Text = endereco.Cliente_id.ToString();
                 MessageBox.Show($"O Endereco {endereco.Cliente_id}, " +
                     $"foi inserido com sucesso , com o ID {endereco.Id}");
-                txtId.Clear();
-                txtNome.Clear();
-                txtEmail.Clear();
-                txtCPF.Clear();
-                txtTelefone.Clear();
+                txtId_Endereco.Clear();
+                txtidCliente_Endereco.Clear();
+                txtLogradou_Endereco.Clear();
+                txtNumero_Endereco.Clear();
+                txtComplemento_Endereco.Clear();
+                txtBairro_Endereco.Clear();
+                txtCidade_Endereco.Clear();
+                txtUF_Endereco.Clear();
+                txtTipo_Endereco.Clear();
                 txtNome.Focus();
 
                 FrmClientes_Load(sender, e);// não sei o que é
@@ -189,6 +192,16 @@ namespace SysPecNSDesk
             {
                 MessageBox.Show("Falha ao gravar");
             }
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvEndereco_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

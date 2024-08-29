@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Mysqlx.Datatypes;
 
 namespace SysPecNSLib
 {
@@ -28,7 +29,7 @@ namespace SysPecNSLib
         public string? Tipo { get; set; }
         public Endereco()
         {
-            
+            Id = 0;
         }
 
 
@@ -62,10 +63,11 @@ namespace SysPecNSLib
 
         public void Inserir()
         {
+            
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_endereco_insert";
-            cmd.Parameters.AddWithValue("spcliente_id", Cliente_id);
+            cmd.Parameters.AddWithValue("spcliente_id", Cliente_id.Id);
             cmd.Parameters.AddWithValue("spcep", Cep);
             cmd.Parameters.AddWithValue("splogradouro", Logradouro);
             cmd.Parameters.AddWithValue("spnumero", Numero);
@@ -79,6 +81,7 @@ namespace SysPecNSLib
             {
                 Id = dr.GetInt32(0);
             }
+            
             cmd.Connection.Close();
 
         }
@@ -87,7 +90,7 @@ namespace SysPecNSLib
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_endereco_update";
-            cmd.Parameters.AddWithValue("spid", id);
+            cmd.Parameters.AddWithValue("spid", Cliente_id.Id);
             cmd.Parameters.AddWithValue("spcep", Cep);
             cmd.Parameters.AddWithValue("splogradouro", Logradouro);
             cmd.Parameters.AddWithValue("spnumero", Numero);
@@ -96,7 +99,8 @@ namespace SysPecNSLib
             cmd.Parameters.AddWithValue("spcidade", Cidade);
             cmd.Parameters.AddWithValue("spuf", UF);
             cmd.Parameters.AddWithValue("sptipo_endereco", Tipo);
-            return cmd.ExecuteNonQuery() > -1 ? true : false;
+
+           // return cmd.ExecuteNonQuery() > -1 ? true : false;
 
 
         }
@@ -144,7 +148,7 @@ namespace SysPecNSLib
             }
             else
             {
-                cmd.CommandText = $"select * from enderecos where cliente_id = {Cliente_id} and logradouro like '%{nome}% order by nome limit 10'";
+                cmd.CommandText = $"select * from enderecos where cliente_id = {Cliente_id.Id} and logradouro like '%{nome}% order by nome limit 10'";
             }
 
             var dr = cmd.ExecuteReader();
@@ -170,10 +174,48 @@ namespace SysPecNSLib
             cmd.Connection.Close();
             return lista;
         }
-        public static List<Endereco> ObterClientesPorId(string? nome = "")
+
+        /*public static List<Endereco> ObterListaPorClientesPorId(string? nome = "")
         {
 
-        }
+            List<Endereco> lista = new();
+            Endereco Cliente_id = new();
+            //Endereco id = new();
+
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            if (nome == "")
+            {
+                cmd.CommandText = "select * from enderecos order by logradouro limit 10;";
+            }
+            else
+            {
+                cmd.CommandText = $"select * from enderecos where cliente_id = {Cliente_id} and logradouro like '%{nome}% order by nome limit 10'";
+            }
+
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                lista.Add(
+                    new(
+                        dr.GetInt32(0),
+                    Cliente.ObterporId(
+                        dr.GetInt32(1)
+                        ),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetString(4),
+                    dr.GetString(5),
+                    dr.GetString(6),
+                    dr.GetString(7),
+                    dr.GetString(8),
+                    dr.GetString(9)
+                    )
+                 );
+            }
+            cmd.Connection.Close();
+            return lista;
+        }*/
 
 
 

@@ -23,7 +23,7 @@ namespace SysPecNSLib
         public DateTime Data_nasc { get; set; }
         public DateTime Data_cad { get; set; }
         public bool Ativo { get; set; }
-        public List<Endereco> Endereco { get; set; }
+        public List<Endereco>? Enderecos { get; set; }
         
 
         public Cliente() 
@@ -56,7 +56,7 @@ namespace SysPecNSLib
             Ativo = ativo;
         }
 
-        public Cliente( string? nome, string? cpf, string? telefone, string? email, DateTime data_nasc, DateTime data_cad, bool ativo, Endereco Endereco)
+        public Cliente( string? nome, string? cpf, string? telefone, string? email, DateTime data_nasc, DateTime data_cad, bool ativo, List<Endereco> Endereco)
         {
             
             Nome = nome;
@@ -66,10 +66,10 @@ namespace SysPecNSLib
             Data_nasc = data_nasc;
             Data_cad = data_cad;
             Ativo = ativo;
-            Endereco = Endereco;
+            Enderecos = Endereco;
         }
-
-        public Cliente(int id, string? nome, string? cpf, string? telefone, string? email,DateTime data_nasc,DateTime data_cad,bool ativo,Endereco Endereco)
+    
+        public Cliente(int id, string? nome, string? cpf, string? telefone, string? email,DateTime data_nasc,DateTime data_cad,bool ativo/*Endereco Endereco*/)
         {
             Id = id;
             Nome = nome;
@@ -117,9 +117,9 @@ namespace SysPecNSLib
                     dr.GetString(4),
                     dr.GetDateTime(5),
                     dr.GetDateTime(6),
-                    dr.GetBoolean(7),
-                    Endereco.ObterListaPorCliente(dr.GetInt32(0))                   
-                    );
+                    dr.GetBoolean(7)/*,
+                    Endereco.ObterListaPorClientesPorId(dr.(8))*/
+                    ) ;
             }
             cmd.Connection.Close();
             return cliente;
