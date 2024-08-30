@@ -27,6 +27,8 @@ namespace SysPecNSLib
         public string? Cidade { get; set; }
         public string? UF { get; set; }
         public string? Tipo { get; set; }
+        
+
         public Endereco()
         {
             Id = 0;
@@ -61,8 +63,9 @@ namespace SysPecNSLib
             Tipo = tipo_endereco;
         }
 
-        public void Inserir()
-        {
+       
+            public void Inserir()
+        { 
             
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
@@ -148,7 +151,7 @@ namespace SysPecNSLib
             }
             else
             {
-                cmd.CommandText = $"select * from enderecos where cliente_id = {Cliente_id.Id} and logradouro like '%{nome}% order by nome limit 10'";
+                cmd.CommandText = $"select * from enderecos where cliente_id = {Cliente_id.Id} and logradouro like '%{nome}% order by logradouro limit 10'";
             }
 
             var dr = cmd.ExecuteReader();
@@ -175,9 +178,11 @@ namespace SysPecNSLib
             return lista;
         }
 
-        /*public static List<Endereco> ObterListaPorClientesPorId(string? nome = "")
-        {
+        public static List<Endereco> ObterListaPorClientesPorId(string nome = "")
 
+
+        
+        {
             List<Endereco> lista = new();
             Endereco Cliente_id = new();
             //Endereco id = new();
@@ -190,7 +195,7 @@ namespace SysPecNSLib
             }
             else
             {
-                cmd.CommandText = $"select * from enderecos where cliente_id = {Cliente_id} and logradouro like '%{nome}% order by nome limit 10'";
+                cmd.CommandText = $"select * from enderecos where cliente_id = {Cliente_id.Id} and logradouro like '%{nome}% order by logradouro limit 10'";
             }
 
             var dr = cmd.ExecuteReader();
@@ -215,7 +220,7 @@ namespace SysPecNSLib
             }
             cmd.Connection.Close();
             return lista;
-        }*/
+        }
 
 
 

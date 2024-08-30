@@ -1,4 +1,5 @@
-﻿using SysPecNSLib;
+﻿using MySqlX.XDevAPI;
+using SysPecNSLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,9 +91,12 @@ namespace SysPecNSDesk
 
         private void CarregaGrid(string nome = "")
         {
-            var lista = Cliente.ObterLista(nome);
+            var lista = Cliente.ObterLista (nome);
             dataGridView1.Rows.Clear();
             int cont = 0;
+
+            var list2 = Endereco.ObterListaPorClientesPorId(nome);
+
             foreach (var cliente in lista)// para cada usuario na lista
             {
                 dataGridView1.Rows.Add();//linhas do datagrid usuarios adiciona
@@ -102,17 +106,22 @@ namespace SysPecNSDesk
                 dataGridView1.Rows[cont].Cells[3].Value = cliente.Telefone;//linhas do datagrid usuarios com linha varivael cont e coluna 4 vale ativo de objeto usuario 
                 dataGridView1.Rows[cont].Cells[4].Value = cliente.Email;
                 dataGridView1.Rows[cont].Cells[5].Value = cliente.Data_nasc;
-                // dataGridView1.Rows[cont].Cells[6].Value = Endereco.ObterLista;
-                dataGridView1.Rows[cont].Cells[7].Value = cliente.Data_cad;
-                dataGridView1.Rows[cont].Cells[8].Value = cliente.Ativo;
+                dataGridView1.Rows[cont].Cells[6].Value = cliente.Data_cad;
+                dataGridView1.Rows[cont].Cells[7].Value = cliente.Ativo;
+                
                 cont++;//{cont esta em loop para listar os usuarios}
             }
 
+            foreach (var endereco in list2)
+            {
+                dataGridView1.Rows[cont].Cells[8].Value = endereco.Logradouro + ", " + endereco.Numero + ", " + endereco.Bairro + ", " + endereco.Cidade + ", " + endereco.UF;
+                cont++;//{cont esta em loop para listar os usuarios}
+            }
         }
 
         private void CarregaGrid2(string nome = "")
         {
-            var lista = Endereco.ObterLista(nome);
+            var lista = Endereco.ObterLista (nome);
             dgvEndereco.Rows.Clear();
             int cont = 0;
             foreach (var endereco in lista)// para cada usuario na lista

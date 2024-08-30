@@ -89,6 +89,7 @@
             Data_nasc = new DataGridViewTextBoxColumn();
             Data_cad = new DataGridViewTextBoxColumn();
             Ativo = new DataGridViewCheckBoxColumn();
+            ENDERECO = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -171,7 +172,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Nome, Cpf, Telefone, Email, Data_nasc, Data_cad, Ativo });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Nome, Cpf, Telefone, Email, Data_nasc, Data_cad, Ativo, ENDERECO });
             dataGridView1.Location = new Point(32, 247);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -618,6 +619,13 @@
             Ativo.Name = "Ativo";
             Ativo.ReadOnly = true;
             // 
+            // ENDERECO
+            // 
+            ENDERECO.HeaderText = "Endereco";
+            ENDERECO.Name = "ENDERECO";
+            ENDERECO.ReadOnly = true;
+            ENDERECO.Width = 300;
+            // 
             // FrmClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -700,5 +708,6 @@
         private DataGridViewTextBoxColumn Data_nasc;
         private DataGridViewTextBoxColumn Data_cad;
         private DataGridViewCheckBoxColumn Ativo;
+        private DataGridViewTextBoxColumn ENDERECO;
     }
 }

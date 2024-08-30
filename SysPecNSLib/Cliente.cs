@@ -68,8 +68,8 @@ namespace SysPecNSLib
             Ativo = ativo;
             Enderecos = Endereco;
         }
-    
-        public Cliente(int id, string? nome, string? cpf, string? telefone, string? email,DateTime data_nasc,DateTime data_cad,bool ativo/*Endereco Endereco*/)
+
+        public Cliente(int id, string? nome, string? cpf, string? telefone, string? email, DateTime data_nasc, DateTime data_cad, bool ativo)
         {
             Id = id;
             Nome = nome;
@@ -80,6 +80,20 @@ namespace SysPecNSLib
             Data_cad = data_cad;
             Ativo = ativo;
             
+
+        }
+        public Cliente(int id, string? nome, string? cpf, string? telefone, string? email,DateTime data_nasc,DateTime data_cad,bool ativo, List<Endereco> Endereco)
+        {
+            Id = id;
+            Nome = nome;
+            CPF = cpf;
+            Telefone = telefone;
+            Email = email;
+            Data_nasc = data_nasc;
+            Data_cad = data_cad;
+            Ativo = ativo;
+            Enderecos = Endereco;
+
         }
         
         public void Inserir()
@@ -118,7 +132,7 @@ namespace SysPecNSLib
                     dr.GetDateTime(5),
                     dr.GetDateTime(6),
                     dr.GetBoolean(7)/*,
-                    Endereco.ObterListaPorClientesPorId(dr.(8))*/
+                    Endereco.ObterListaPorClientesPorId(dr.GetString(8))*/
                     ) ;
             }
             cmd.Connection.Close();
@@ -153,7 +167,8 @@ namespace SysPecNSLib
                         dr.GetString(4),
                         dr.GetDateTime(5),
                         dr.GetDateTime(6),
-                        dr.GetBoolean(7)
+                        dr.GetBoolean(7)/*,
+                    Endereco.ObterListaPorClientesPorId(dr.GetString(8))*/
                     )
                  );
             }
