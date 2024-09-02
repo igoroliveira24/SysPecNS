@@ -112,11 +112,7 @@ namespace SysPecNSDesk
                 cont++;//{cont esta em loop para listar os usuarios}
             }
 
-            foreach (var endereco in list2)
-            {
-                dataGridView1.Rows[cont].Cells[8].Value = endereco.Logradouro + ", " + endereco.Numero + ", " + endereco.Bairro + ", " + endereco.Cidade + ", " + endereco.UF;
-                cont++;//{cont esta em loop para listar os usuarios}
-            }
+         
         }
 
         private void CarregaGrid2(string nome = "")
@@ -129,14 +125,14 @@ namespace SysPecNSDesk
                 dgvEndereco.Rows.Add();//linhas do datagrid usuarios adiciona
                 dgvEndereco.Rows[cont].Cells[0].Value = endereco.Id;//linhas do datagrid usuarios com linha varivael cont e coluna 0 vale usuario id
                 dgvEndereco.Rows[cont].Cells[1].Value = endereco.Cliente_id.Nome;//linhas do datagrid usuarios com linha varivael cont e coluna 2 vale usuario Email
-                dgvEndereco.Rows[cont].Cells[2].Value = endereco.Cep;//linhas do datagrid usuarios com linha varivael cont e coluna 3 vale nome de objeto nivel com a variavel usuario
-                dgvEndereco.Rows[cont].Cells[3].Value = endereco.Logradouro;//linhas do datagrid usuarios com linha varivael cont e coluna 4 vale ativo de objeto usuario 
-                dgvEndereco.Rows[cont].Cells[4].Value = endereco.Numero;
-                dgvEndereco.Rows[cont].Cells[5].Value = endereco.Complemento;
-                dgvEndereco.Rows[cont].Cells[6].Value = endereco.Bairro;
-                dgvEndereco.Rows[cont].Cells[7].Value = endereco.Cidade;
-                dgvEndereco.Rows[cont].Cells[8].Value = endereco.UF;
-                dgvEndereco.Rows[cont].Cells[9].Value = endereco.Tipo;
+                dgvEndereco.Rows[cont].Cells[2].Value = endereco.Cliente_id.CPF;//linhas do datagrid usuarios com linha varivael cont e coluna 3 vale nome de objeto nivel com a variavel usuario
+                dgvEndereco.Rows[cont].Cells[3].Value = endereco.Cliente_id.Telefone;//linhas do datagrid usuarios com linha varivael cont e coluna 4 vale ativo de objeto usuario 
+                dgvEndereco.Rows[cont].Cells[4].Value = endereco.Cliente_id.Email;
+                dgvEndereco.Rows[cont].Cells[5].Value = endereco.Cliente_id.Data_nasc;
+                dgvEndereco.Rows[cont].Cells[6].Value = endereco.Cliente_id.Data_cad;
+                dgvEndereco.Rows[cont].Cells[7].Value = endereco.Cliente_id.Ativo;
+                dgvEndereco.Rows[cont].Cells[8].Value = endereco.Cep + ", " + endereco.Tipo + ", " + endereco.Logradouro  + ", " + endereco.Numero + ", " + endereco.Complemento + ", " + endereco.Bairro + ", " + endereco.Cidade + ", " + endereco.UF;
+              
                 cont++;//{cont esta em loop para listar os usuarios}
             }
 

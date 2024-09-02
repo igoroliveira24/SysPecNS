@@ -51,16 +51,6 @@
             brnInserir_Endereco = new Button();
             txtBuscaClientes_Endereco = new TextBox();
             dgvEndereco = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            IDCliente = new DataGridViewTextBoxColumn();
-            CEP = new DataGridViewTextBoxColumn();
-            Logradouro = new DataGridViewTextBoxColumn();
-            Numero = new DataGridViewTextBoxColumn();
-            Complemento = new DataGridViewTextBoxColumn();
-            Bairro = new DataGridViewTextBoxColumn();
-            Cidade = new DataGridViewTextBoxColumn();
-            UF = new DataGridViewTextBoxColumn();
-            Tipo = new DataGridViewTextBoxColumn();
             label17 = new Label();
             label16 = new Label();
             label15 = new Label();
@@ -89,7 +79,15 @@
             Data_nasc = new DataGridViewTextBoxColumn();
             Data_cad = new DataGridViewTextBoxColumn();
             Ativo = new DataGridViewCheckBoxColumn();
-            ENDERECO = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            IDCliente = new DataGridViewTextBoxColumn();
+            CEP = new DataGridViewTextBoxColumn();
+            Logradouro = new DataGridViewTextBoxColumn();
+            Numero = new DataGridViewTextBoxColumn();
+            Complemento = new DataGridViewTextBoxColumn();
+            Bairro = new DataGridViewTextBoxColumn();
+            Cidade = new DataGridViewCheckBoxColumn();
+            UF = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -172,7 +170,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Nome, Cpf, Telefone, Email, Data_nasc, Data_cad, Ativo, ENDERECO });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Nome, Cpf, Telefone, Email, Data_nasc, Data_cad, Ativo });
             dataGridView1.Location = new Point(32, 247);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -335,7 +333,7 @@
             // 
             dgvEndereco.AllowUserToAddRows = false;
             dgvEndereco.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEndereco.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, IDCliente, CEP, Logradouro, Numero, Complemento, Bairro, Cidade, UF, Tipo });
+            dgvEndereco.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, IDCliente, CEP, Logradouro, Numero, Complemento, Bairro, Cidade, UF });
             dgvEndereco.Location = new Point(25, 247);
             dgvEndereco.Name = "dgvEndereco";
             dgvEndereco.ReadOnly = true;
@@ -343,68 +341,6 @@
             dgvEndereco.Size = new Size(740, 166);
             dgvEndereco.TabIndex = 33;
             dgvEndereco.CellContentClick += dgvEndereco_CellContentClick;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.Frozen = true;
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.ReadOnly = true;
-            dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // IDCliente
-            // 
-            IDCliente.HeaderText = "Cliente";
-            IDCliente.Name = "IDCliente";
-            IDCliente.ReadOnly = true;
-            // 
-            // CEP
-            // 
-            CEP.HeaderText = "CEP";
-            CEP.Name = "CEP";
-            CEP.ReadOnly = true;
-            // 
-            // Logradouro
-            // 
-            Logradouro.HeaderText = "Logradouro";
-            Logradouro.Name = "Logradouro";
-            Logradouro.ReadOnly = true;
-            // 
-            // Numero
-            // 
-            Numero.HeaderText = "Numero";
-            Numero.Name = "Numero";
-            Numero.ReadOnly = true;
-            // 
-            // Complemento
-            // 
-            Complemento.HeaderText = "Complemento";
-            Complemento.Name = "Complemento";
-            Complemento.ReadOnly = true;
-            // 
-            // Bairro
-            // 
-            Bairro.HeaderText = "Bairro";
-            Bairro.Name = "Bairro";
-            Bairro.ReadOnly = true;
-            // 
-            // Cidade
-            // 
-            Cidade.HeaderText = "Cidade";
-            Cidade.Name = "Cidade";
-            Cidade.ReadOnly = true;
-            // 
-            // UF
-            // 
-            UF.HeaderText = "UF";
-            UF.Name = "UF";
-            UF.ReadOnly = true;
-            // 
-            // Tipo
-            // 
-            Tipo.HeaderText = "Tipo";
-            Tipo.Name = "Tipo";
-            Tipo.ReadOnly = true;
             // 
             // label17
             // 
@@ -619,12 +555,64 @@
             Ativo.Name = "Ativo";
             Ativo.ReadOnly = true;
             // 
-            // ENDERECO
+            // dataGridViewTextBoxColumn1
             // 
-            ENDERECO.HeaderText = "Endereco";
-            ENDERECO.Name = "ENDERECO";
-            ENDERECO.ReadOnly = true;
-            ENDERECO.Width = 300;
+            dataGridViewTextBoxColumn1.Frozen = true;
+            dataGridViewTextBoxColumn1.HeaderText = "ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // IDCliente
+            // 
+            IDCliente.HeaderText = "Cliente";
+            IDCliente.Name = "IDCliente";
+            IDCliente.ReadOnly = true;
+            // 
+            // CEP
+            // 
+            CEP.HeaderText = "Cpf";
+            CEP.Name = "CEP";
+            CEP.ReadOnly = true;
+            // 
+            // Logradouro
+            // 
+            Logradouro.HeaderText = "Telefone";
+            Logradouro.Name = "Logradouro";
+            Logradouro.ReadOnly = true;
+            // 
+            // Numero
+            // 
+            Numero.HeaderText = "Email";
+            Numero.Name = "Numero";
+            Numero.ReadOnly = true;
+            // 
+            // Complemento
+            // 
+            Complemento.HeaderText = "Data de nascimento";
+            Complemento.Name = "Complemento";
+            Complemento.ReadOnly = true;
+            // 
+            // Bairro
+            // 
+            Bairro.HeaderText = "Cadastro";
+            Bairro.Name = "Bairro";
+            Bairro.ReadOnly = true;
+            // 
+            // Cidade
+            // 
+            Cidade.HeaderText = "Ativo";
+            Cidade.Name = "Cidade";
+            Cidade.ReadOnly = true;
+            Cidade.Resizable = DataGridViewTriState.True;
+            Cidade.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // UF
+            // 
+            UF.HeaderText = "Endereco";
+            UF.Name = "UF";
+            UF.ReadOnly = true;
+            UF.Width = 300;
             // 
             // FrmClientes
             // 
@@ -690,16 +678,6 @@
         private Button brnInserir_Endereco;
         private TextBox txtBuscaClientes_Endereco;
         private DataGridView dgvEndereco;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn IDCliente;
-        private DataGridViewTextBoxColumn CEP;
-        private DataGridViewTextBoxColumn Logradouro;
-        private DataGridViewTextBoxColumn Numero;
-        private DataGridViewTextBoxColumn Complemento;
-        private DataGridViewTextBoxColumn Bairro;
-        private DataGridViewTextBoxColumn Cidade;
-        private DataGridViewTextBoxColumn UF;
-        private DataGridViewTextBoxColumn Tipo;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Nome;
         private DataGridViewTextBoxColumn Cpf;
@@ -708,6 +686,14 @@
         private DataGridViewTextBoxColumn Data_nasc;
         private DataGridViewTextBoxColumn Data_cad;
         private DataGridViewCheckBoxColumn Ativo;
-        private DataGridViewTextBoxColumn ENDERECO;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn IDCliente;
+        private DataGridViewTextBoxColumn CEP;
+        private DataGridViewTextBoxColumn Logradouro;
+        private DataGridViewTextBoxColumn Numero;
+        private DataGridViewTextBoxColumn Complemento;
+        private DataGridViewTextBoxColumn Bairro;
+        private DataGridViewCheckBoxColumn Cidade;
+        private DataGridViewTextBoxColumn UF;
     }
 }
