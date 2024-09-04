@@ -35,6 +35,14 @@
             label7 = new Label();
             dtmDataNasc = new DateTimePicker();
             dataGridView1 = new DataGridView();
+            Id = new DataGridViewTextBoxColumn();
+            Nome = new DataGridViewTextBoxColumn();
+            Cpf = new DataGridViewTextBoxColumn();
+            Telefone = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            Data_nasc = new DataGridViewTextBoxColumn();
+            Data_cad = new DataGridViewTextBoxColumn();
+            Ativo = new DataGridViewCheckBoxColumn();
             txtEmail = new TextBox();
             txtTelefone = new TextBox();
             txtCPF = new TextBox();
@@ -51,6 +59,15 @@
             brnInserir_Endereco = new Button();
             txtBuscaClientes_Endereco = new TextBox();
             dgvEndereco = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            IDCliente = new DataGridViewTextBoxColumn();
+            CEP = new DataGridViewTextBoxColumn();
+            Logradouro = new DataGridViewTextBoxColumn();
+            Numero = new DataGridViewTextBoxColumn();
+            Complemento = new DataGridViewTextBoxColumn();
+            Bairro = new DataGridViewTextBoxColumn();
+            Cidade = new DataGridViewCheckBoxColumn();
+            UF = new DataGridViewTextBoxColumn();
             label17 = new Label();
             label16 = new Label();
             label15 = new Label();
@@ -71,23 +88,6 @@
             txtTipo_Endereco = new TextBox();
             txtUF_Endereco = new TextBox();
             txtComplemento_Endereco = new TextBox();
-            Id = new DataGridViewTextBoxColumn();
-            Nome = new DataGridViewTextBoxColumn();
-            Cpf = new DataGridViewTextBoxColumn();
-            Telefone = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            Data_nasc = new DataGridViewTextBoxColumn();
-            Data_cad = new DataGridViewTextBoxColumn();
-            Ativo = new DataGridViewCheckBoxColumn();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            IDCliente = new DataGridViewTextBoxColumn();
-            CEP = new DataGridViewTextBoxColumn();
-            Logradouro = new DataGridViewTextBoxColumn();
-            Numero = new DataGridViewTextBoxColumn();
-            Complemento = new DataGridViewTextBoxColumn();
-            Bairro = new DataGridViewTextBoxColumn();
-            Cidade = new DataGridViewCheckBoxColumn();
-            UF = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -142,6 +142,7 @@
             btnInserir.TabIndex = 36;
             btnInserir.Text = "&Inserir";
             btnInserir.UseVisualStyleBackColor = true;
+            btnInserir.Click += btnInserir_Click_1;
             // 
             // textBox6
             // 
@@ -178,6 +179,58 @@
             dataGridView1.Size = new Size(740, 166);
             dataGridView1.TabIndex = 32;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
+            // 
+            // Id
+            // 
+            Id.Frozen = true;
+            Id.HeaderText = "ID";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            Id.Width = 50;
+            // 
+            // Nome
+            // 
+            Nome.HeaderText = "NOME";
+            Nome.Name = "Nome";
+            Nome.ReadOnly = true;
+            Nome.Width = 150;
+            // 
+            // Cpf
+            // 
+            Cpf.HeaderText = "CPF";
+            Cpf.Name = "Cpf";
+            Cpf.ReadOnly = true;
+            // 
+            // Telefone
+            // 
+            Telefone.HeaderText = "TELEFONE";
+            Telefone.Name = "Telefone";
+            Telefone.ReadOnly = true;
+            // 
+            // Email
+            // 
+            Email.HeaderText = "Email";
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            Email.Width = 150;
+            // 
+            // Data_nasc
+            // 
+            Data_nasc.HeaderText = "Data de Nascimento";
+            Data_nasc.Name = "Data_nasc";
+            Data_nasc.ReadOnly = true;
+            // 
+            // Data_cad
+            // 
+            Data_cad.HeaderText = "Cadastro";
+            Data_cad.Name = "Data_cad";
+            Data_cad.ReadOnly = true;
+            // 
+            // Ativo
+            // 
+            Ativo.HeaderText = "Ativo";
+            Ativo.Name = "Ativo";
+            Ativo.ReadOnly = true;
             // 
             // txtEmail
             // 
@@ -342,6 +395,65 @@
             dgvEndereco.TabIndex = 33;
             dgvEndereco.CellContentClick += dgvEndereco_CellContentClick;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.Frozen = true;
+            dataGridViewTextBoxColumn1.HeaderText = "ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // IDCliente
+            // 
+            IDCliente.HeaderText = "Cliente";
+            IDCliente.Name = "IDCliente";
+            IDCliente.ReadOnly = true;
+            // 
+            // CEP
+            // 
+            CEP.HeaderText = "Cpf";
+            CEP.Name = "CEP";
+            CEP.ReadOnly = true;
+            // 
+            // Logradouro
+            // 
+            Logradouro.HeaderText = "Telefone";
+            Logradouro.Name = "Logradouro";
+            Logradouro.ReadOnly = true;
+            // 
+            // Numero
+            // 
+            Numero.HeaderText = "Email";
+            Numero.Name = "Numero";
+            Numero.ReadOnly = true;
+            // 
+            // Complemento
+            // 
+            Complemento.HeaderText = "Data de nascimento";
+            Complemento.Name = "Complemento";
+            Complemento.ReadOnly = true;
+            // 
+            // Bairro
+            // 
+            Bairro.HeaderText = "Cadastro";
+            Bairro.Name = "Bairro";
+            Bairro.ReadOnly = true;
+            // 
+            // Cidade
+            // 
+            Cidade.HeaderText = "Ativo";
+            Cidade.Name = "Cidade";
+            Cidade.ReadOnly = true;
+            Cidade.Resizable = DataGridViewTriState.True;
+            Cidade.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // UF
+            // 
+            UF.HeaderText = "Endereco";
+            UF.Name = "UF";
+            UF.ReadOnly = true;
+            UF.Width = 300;
+            // 
             // label17
             // 
             label17.AutoSize = true;
@@ -502,117 +614,6 @@
             txtComplemento_Endereco.Name = "txtComplemento_Endereco";
             txtComplemento_Endereco.Size = new Size(142, 23);
             txtComplemento_Endereco.TabIndex = 0;
-            // 
-            // Id
-            // 
-            Id.Frozen = true;
-            Id.HeaderText = "ID";
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            Id.Width = 50;
-            // 
-            // Nome
-            // 
-            Nome.HeaderText = "NOME";
-            Nome.Name = "Nome";
-            Nome.ReadOnly = true;
-            Nome.Width = 150;
-            // 
-            // Cpf
-            // 
-            Cpf.HeaderText = "CPF";
-            Cpf.Name = "Cpf";
-            Cpf.ReadOnly = true;
-            // 
-            // Telefone
-            // 
-            Telefone.HeaderText = "TELEFONE";
-            Telefone.Name = "Telefone";
-            Telefone.ReadOnly = true;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            Email.Width = 150;
-            // 
-            // Data_nasc
-            // 
-            Data_nasc.HeaderText = "Data de Nascimento";
-            Data_nasc.Name = "Data_nasc";
-            Data_nasc.ReadOnly = true;
-            // 
-            // Data_cad
-            // 
-            Data_cad.HeaderText = "Cadastro";
-            Data_cad.Name = "Data_cad";
-            Data_cad.ReadOnly = true;
-            // 
-            // Ativo
-            // 
-            Ativo.HeaderText = "Ativo";
-            Ativo.Name = "Ativo";
-            Ativo.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.Frozen = true;
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.ReadOnly = true;
-            dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // IDCliente
-            // 
-            IDCliente.HeaderText = "Cliente";
-            IDCliente.Name = "IDCliente";
-            IDCliente.ReadOnly = true;
-            // 
-            // CEP
-            // 
-            CEP.HeaderText = "Cpf";
-            CEP.Name = "CEP";
-            CEP.ReadOnly = true;
-            // 
-            // Logradouro
-            // 
-            Logradouro.HeaderText = "Telefone";
-            Logradouro.Name = "Logradouro";
-            Logradouro.ReadOnly = true;
-            // 
-            // Numero
-            // 
-            Numero.HeaderText = "Email";
-            Numero.Name = "Numero";
-            Numero.ReadOnly = true;
-            // 
-            // Complemento
-            // 
-            Complemento.HeaderText = "Data de nascimento";
-            Complemento.Name = "Complemento";
-            Complemento.ReadOnly = true;
-            // 
-            // Bairro
-            // 
-            Bairro.HeaderText = "Cadastro";
-            Bairro.Name = "Bairro";
-            Bairro.ReadOnly = true;
-            // 
-            // Cidade
-            // 
-            Cidade.HeaderText = "Ativo";
-            Cidade.Name = "Cidade";
-            Cidade.ReadOnly = true;
-            Cidade.Resizable = DataGridViewTriState.True;
-            Cidade.SortMode = DataGridViewColumnSortMode.Automatic;
-            // 
-            // UF
-            // 
-            UF.HeaderText = "Endereco";
-            UF.Name = "UF";
-            UF.ReadOnly = true;
-            UF.Width = 300;
             // 
             // FrmClientes
             // 

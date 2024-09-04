@@ -91,7 +91,7 @@ namespace SysPecNSDesk
 
         private void CarregaGrid(string nome = "")
         {
-            var lista = Cliente.ObterLista (nome);
+            var lista = Cliente.ObterLista(nome);
             dataGridView1.Rows.Clear();
             int cont = 0;
 
@@ -108,16 +108,16 @@ namespace SysPecNSDesk
                 dataGridView1.Rows[cont].Cells[5].Value = cliente.Data_nasc;
                 dataGridView1.Rows[cont].Cells[6].Value = cliente.Data_cad;
                 dataGridView1.Rows[cont].Cells[7].Value = cliente.Ativo;
-                
+
                 cont++;//{cont esta em loop para listar os usuarios}
             }
 
-         
+
         }
 
         private void CarregaGrid2(string nome = "")
         {
-            var lista = Endereco.ObterLista (nome);
+            var lista = Endereco.ObterLista(nome);
             dgvEndereco.Rows.Clear();
             int cont = 0;
             foreach (var endereco in lista)// para cada usuario na lista
@@ -131,8 +131,8 @@ namespace SysPecNSDesk
                 dgvEndereco.Rows[cont].Cells[5].Value = endereco.Cliente_id.Data_nasc;
                 dgvEndereco.Rows[cont].Cells[6].Value = endereco.Cliente_id.Data_cad;
                 dgvEndereco.Rows[cont].Cells[7].Value = endereco.Cliente_id.Ativo;
-                dgvEndereco.Rows[cont].Cells[8].Value = endereco.Cep + ", " + endereco.Tipo + ", " + endereco.Logradouro  + ", " + endereco.Numero + ", " + endereco.Complemento + ", " + endereco.Bairro + ", " + endereco.Cidade + ", " + endereco.UF;
-              
+                dgvEndereco.Rows[cont].Cells[8].Value = endereco.Cep + ", " + endereco.Tipo + ", " + endereco.Logradouro + ", " + endereco.Numero + ", " + endereco.Complemento + ", " + endereco.Bairro + ", " + endereco.Cidade + ", " + endereco.UF;
+
                 cont++;//{cont esta em loop para listar os usuarios}
             }
 
@@ -205,6 +205,11 @@ namespace SysPecNSDesk
         }
 
         private void dgvEndereco_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnInserir_Click_1(object sender, EventArgs e)
         {
 
         }

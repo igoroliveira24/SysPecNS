@@ -19,13 +19,10 @@ namespace SysPecNSLib
         public double EstoqueMinimo { get; set; }
         public double ClasseDesconto { get; set; }
         public byte[]? Imagem { get; set; }
-        public DateTime DataCad { get; set; }
+        public DateTime? DataCad { get; set; }
 
-        public Produto()
-        {
-
-            
-        }
+        public Produto() { Categoria = new(); }
+        
 
         public Produto(string? codBar, string? descricao, double valorUnit, string? unidadeVenda, Categoria categoria, double estoqueMinimo, double classeDesconto)
         {
@@ -65,6 +62,20 @@ namespace SysPecNSLib
             ClasseDesconto = classeDesconto;
             Imagem = imagem;
             DataCad = dataCad;
+        }
+
+        public Produto(int id, string? codBar, string? descricao, double valorUnit, string? unidadeVenda, Categoria categoria, double estoqueMinimo, double classeDesconto, byte[]? imagem = null, DateTime? dataCad = null)
+        {
+            Id = id;
+            CodBar = codBar;
+            Descricao = descricao;
+            ValorUnit = valorUnit;
+            UnidadeVenda = unidadeVenda;
+            Categoria = categoria;
+            EstoqueMinimo = estoqueMinimo;
+            ClasseDesconto = classeDesconto;
+            Imagem = imagem;
+            
         }
 
         public Produto(int id, string? codBar, string? descricao, double valorUnit, string? unidadeVenda, Categoria categoria, double estoqueMinimo, double classeDesconto, byte[]? imagem, DateTime dataCad)
@@ -116,7 +127,7 @@ namespace SysPecNSLib
         {
             Produto produto = new();//Objeto da Classe Produto em lista recebe um metodo construtor vazio
             var cmd = Banco.Abrir();
-            cmd.CommandText = $"select * from produtos where id {id}";
+            cmd.CommandText = $"select * from produtos where id = {id}";
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -131,7 +142,7 @@ namespace SysPecNSLib
                         ),
                     dr.GetDouble(6),
                     dr.GetDouble(7),
-                    (byte[])dr.GetValue(8),
+                    null,
                     dr.GetDateTime(9)
 
                     ) ;
@@ -145,6 +156,7 @@ namespace SysPecNSLib
         {   
             List<Produto> produtos = new();//Objeto da Classe Lista de Produto em lista recebe um metodo construtor vazio
             var cmd = Banco.Abrir();
+            cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "select * from produtos order by descricao";
             var dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -160,12 +172,12 @@ namespace SysPecNSLib
                         ),
                     dr.GetDouble(6),
                     dr.GetDouble(7),
-                    (byte[])dr.GetValue(8),
+                    null,
                     dr.GetDateTime(9)
 
                     ));
             }
-
+            cmd.Connection.Close();
             return produtos;
         }
 

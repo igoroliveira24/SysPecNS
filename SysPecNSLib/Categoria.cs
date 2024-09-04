@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Cms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,12 @@ namespace SysPecNSLib
             Sigla = sigla;
         }
 
+        public Categoria(int id, string? nome)
+        {
+            Id = id;
+            Nome = nome;
+            
+        }
         public Categoria(int id, string? nome, string? sigla)
         {
             Id = id;
@@ -50,14 +57,14 @@ namespace SysPecNSLib
             var dr = cmd.ExecuteReader();
             if(dr.Read())
             {
-                categoria = new(dr.GetInt32(0), dr.GetString(1), dr.GetString(2));
+                categoria = new(dr.GetInt32(0), dr.GetString(1), null);
             }
 
 
             return categoria;
         }
         
-        public List<Categoria> ObterLista(int id)//Objeto da classe Endereço em Lista
+        public static List<Categoria> ObterLista()//Objeto da classe Endereço em Lista
         {
             List<Categoria> categorias = new();//Objeto da Classe Endereço em lista recebe os metodos construtores de new 
             var cmd = Banco.Abrir();// variavel cmd recebe a ação de abrir o banco
@@ -65,7 +72,7 @@ namespace SysPecNSLib
             var dr = cmd.ExecuteReader();//variavel dr recebe o que for lido 
             while (dr.Read())// enquanto for verdadeiro faça 
             {
-                categorias.Add(new(dr.GetInt32(0), dr.GetString(1), dr.GetString(2)));//listagem em virtude dos metodos construtores
+                categorias.Add(new(dr.GetInt32(0), dr.GetString(1),null));//listagem em virtude dos metodos construtores
             }
 
 
