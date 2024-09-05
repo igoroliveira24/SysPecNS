@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mysqlx.Prepare;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,17 +20,20 @@ namespace SysPecNSLib
         public string? Contato { get; set; }
         public string? Telefone { get; set; }
         public string? Email { get; set; }
-        public Produto? Produto_Id { get; set; }
+        public Produto ProdutoId { get; set; }
+        public Fornecedor Fornecedorid {get;set;}
 
         public Fornecedor()
         {
         }
 
-        public Fornecedor(Produto produto_Id, int id)
+        public Fornecedor(Produto produto_Id, Fornecedor fornecedorid)
         {
-            Produto_Id = produto_Id;
-            Id = id;
+            ProdutoId = produto_Id;
+            Fornecedorid = fornecedorid;
         }
+
+       
 
         public Fornecedor(string? razaoSocial, string? fantasia, string? cNPJ, string? contato, string? telefone, string? email)
         {
@@ -42,7 +46,7 @@ namespace SysPecNSLib
             Email = email;
         }
 
-        public Fornecedor(int id, string? razaoSocial, string? fantasia, string? cNPJ, string? contato, string? telefone, string? email)
+        public Fornecedor( int id, string? razaoSocial, string? fantasia, string? cNPJ, string? contato, string? telefone, string? email)
         {
             Id = id;
             RazaoSocial = razaoSocial;
@@ -56,9 +60,8 @@ namespace SysPecNSLib
         public void Inserir()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = $"insert into fornecedores (razao_social,fantasia,cnpj,contato,telefone,email) values ('{RazaoSocial}','{Fantasia}','{CNPJ}','{Contato}','{Telefone}','{Email}')";
+            cmd.CommandText = $"insert into fornecedores values (0,'{RazaoSocial}','{Fantasia}','{CNPJ}','{Contato}','{Telefone}','{Email}')";
             cmd.ExecuteNonQuery();
-            cmd.Connection.Close();
         }
 
         public static Fornecedor ObterPorId(int id)
@@ -119,7 +122,7 @@ namespace SysPecNSLib
         public void InserirpdtFornecedor()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = $"insert into produtofornecedor(produto_id, fornecedores_id) values('{Produto_Id}','{Id}')";
+            cmd.CommandText = $"insert into produtofornecedor values('{ProdutoId.Id}','{Fornecedorid.Id}')";
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
         }
@@ -128,7 +131,7 @@ namespace SysPecNSLib
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = $"update produtofornecedor " +
-                $"set produto_id = '{Produto_Id}',fornecedores_id = '{Id}' where id = '{Id}'";
+                $"set produto_id = '{ProdutoId.Id}',fornecedores_id = '{Id}' where id = '{Id}'";
 
         }
 
@@ -143,7 +146,7 @@ namespace SysPecNSLib
             {
                 fornecedor = new(
                     Produto.ObterPorId(dr.GetInt32(0)),
-                    dr.GetInt32(1)
+                    ObterPorId(dr.GetInt32(1))
                     );
             }
             cmd.Connection.Close();
@@ -161,7 +164,7 @@ namespace SysPecNSLib
             {
                 fornecedor.Add(new(
                     Produto.ObterPorId(dr.GetInt32(0)),
-                    dr.GetInt32(1)
+                    ObterPorId(dr.GetInt32(1))
                     ));
             }
             cmd.Connection.Close();

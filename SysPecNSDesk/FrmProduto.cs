@@ -117,7 +117,7 @@ namespace SysPecNSDesk
             txtUdV.Clear();
             txtDesc.Clear();
             txtDesconto.Clear();
-            
+
         }
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -138,7 +138,12 @@ namespace SysPecNSDesk
             btnConsulta.Text = "&Consultar";
             LimpaControles();
             FrmProduto_Load_1(sender, e);
-            
+
+
+        }
+
+        private void dgvEstoque_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

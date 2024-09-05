@@ -152,7 +152,7 @@ namespace SysPecNSLib
             else
             {
                 cmd.CommandText = $"select * from clientes" +                   
-                    "where nome like '%{nome}% order by nome limit 10';";            
+                   $"where nome like '%{nome}% order by nome limit 10';";            
             }
 
             var dr = cmd.ExecuteReader();

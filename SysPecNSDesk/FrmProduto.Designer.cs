@@ -235,6 +235,7 @@
             dgvEstoque.RowHeadersVisible = false;
             dgvEstoque.Size = new Size(538, 150);
             dgvEstoque.TabIndex = 22;
+            dgvEstoque.CellContentClick += dgvEstoque_CellContentClick_1;
             // 
             // id
             // 

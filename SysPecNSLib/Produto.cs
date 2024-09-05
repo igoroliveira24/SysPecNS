@@ -152,12 +152,22 @@ namespace SysPecNSLib
             return produto;
         }   
             
-        public static List<Produto> ObterLista()
+        public static List<Produto> ObterLista(string nome = "")
         {   
             List<Produto> produtos = new();//Objeto da Classe Lista de Produto em lista recebe um metodo construtor vazio
             var cmd = Banco.Abrir();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "select * from produtos order by descricao";
+            //cmd.CommandText = "select * from produtos order by descricao";
+            if (nome == "")
+            {
+                cmd.CommandText = "select * from produtos " +
+                    "order by descricao limit 10;";
+            }
+            else
+            {
+                cmd.CommandText = $"select * from produtos" +
+                    $"where descricao like '%{nome}% order by descricao limit 10';";
+            }
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {

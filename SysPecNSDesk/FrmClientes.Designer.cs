@@ -150,6 +150,7 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(740, 23);
             textBox6.TabIndex = 35;
+            textBox6.TextChanged += textBox6_TextChanged_1;
             // 
             // label7
             // 

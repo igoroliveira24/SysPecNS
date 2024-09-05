@@ -213,5 +213,10 @@ namespace SysPecNSDesk
         {
 
         }
+
+        private void textBox6_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
