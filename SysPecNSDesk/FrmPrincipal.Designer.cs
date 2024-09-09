@@ -46,6 +46,7 @@
             sairToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
+            novoToolStripMenuItem4 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -137,8 +138,9 @@
             // 
             // pedidoToolStripMenuItem
             // 
+            pedidoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem4 });
             pedidoToolStripMenuItem.Name = "pedidoToolStripMenuItem";
-            pedidoToolStripMenuItem.Size = new Size(111, 22);
+            pedidoToolStripMenuItem.Size = new Size(180, 22);
             pedidoToolStripMenuItem.Text = "&Pedido";
             // 
             // operaçãoToolStripMenuItem
@@ -175,6 +177,13 @@
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(118, 17);
             toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // novoToolStripMenuItem4
+            // 
+            novoToolStripMenuItem4.Name = "novoToolStripMenuItem4";
+            novoToolStripMenuItem4.Size = new Size(180, 22);
+            novoToolStripMenuItem4.Text = "Novo";
+            novoToolStripMenuItem4.Click += novoToolStripMenuItem4_Click;
             // 
             // FrmPrincipal
             // 
@@ -217,5 +226,6 @@
         private ToolStripMenuItem novoToolStripMenuItem3;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripMenuItem novoToolStripMenuItem4;
     }
 }
