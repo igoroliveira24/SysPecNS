@@ -70,5 +70,15 @@ namespace SysPecNSDesk
             frmPedidoNovo.MdiParent = this;
             frmPedidoNovo.Show();
         }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

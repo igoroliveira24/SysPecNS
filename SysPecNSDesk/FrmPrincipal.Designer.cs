@@ -41,12 +41,12 @@
             novoToolStripMenuItem3 = new ToolStripMenuItem();
             movimentoToolStripMenuItem = new ToolStripMenuItem();
             pedidoToolStripMenuItem = new ToolStripMenuItem();
+            novoToolStripMenuItem4 = new ToolStripMenuItem();
             operaçãoToolStripMenuItem = new ToolStripMenuItem();
             caixaToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
-            novoToolStripMenuItem4 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -73,6 +73,7 @@
             clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
             clientesToolStripMenuItem.Size = new Size(134, 22);
             clientesToolStripMenuItem.Text = "&Clientes";
+            clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // novoToolStripMenuItem
             // 
@@ -140,8 +141,15 @@
             // 
             pedidoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem4 });
             pedidoToolStripMenuItem.Name = "pedidoToolStripMenuItem";
-            pedidoToolStripMenuItem.Size = new Size(180, 22);
+            pedidoToolStripMenuItem.Size = new Size(111, 22);
             pedidoToolStripMenuItem.Text = "&Pedido";
+            // 
+            // novoToolStripMenuItem4
+            // 
+            novoToolStripMenuItem4.Name = "novoToolStripMenuItem4";
+            novoToolStripMenuItem4.Size = new Size(103, 22);
+            novoToolStripMenuItem4.Text = "Novo";
+            novoToolStripMenuItem4.Click += novoToolStripMenuItem4_Click;
             // 
             // operaçãoToolStripMenuItem
             // 
@@ -177,13 +185,7 @@
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(118, 17);
             toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // novoToolStripMenuItem4
-            // 
-            novoToolStripMenuItem4.Name = "novoToolStripMenuItem4";
-            novoToolStripMenuItem4.Size = new Size(180, 22);
-            novoToolStripMenuItem4.Text = "Novo";
-            novoToolStripMenuItem4.Click += novoToolStripMenuItem4_Click;
+            toolStripStatusLabel1.Click += toolStripStatusLabel1_Click;
             // 
             // FrmPrincipal
             // 

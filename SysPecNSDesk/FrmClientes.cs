@@ -45,36 +45,7 @@ namespace SysPecNSDesk
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new(
-                txtNome.Text,
-                txtEmail.Text,
-                txtCPF.Text,
-                txtTelefone.Text,
-                dtmDataNasc.Value);
-
-
-
-
-
-            cliente.Inserir();
-            if (cliente.Id > 0)
-            {
-                txtId.Text = cliente.Id.ToString();
-                MessageBox.Show($"O Cliente {cliente.Nome}, " +
-                    $"foi inserido com sucesso , com o ID {cliente.Id}");
-                txtId.Clear();
-                txtNome.Clear();
-                txtEmail.Clear();
-                txtCPF.Clear();
-                txtTelefone.Clear();
-                txtNome.Focus();
-
-                FrmClientes_Load(sender, e);// não sei o que é
-            }
-            else
-            {
-                MessageBox.Show("Falha ao gravar");
-            }
+            
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
@@ -211,7 +182,36 @@ namespace SysPecNSDesk
 
         private void btnInserir_Click_1(object sender, EventArgs e)
         {
+            Cliente cliente = new(
+                txtNome.Text,
+                txtCPF.Text,
+                txtTelefone.Text,
+                txtEmail.Text,                               
+                dtmDataNasc.Value);
 
+
+
+
+
+            cliente.Inserir();
+            if (cliente.Id > 0)
+            {
+                txtId.Text = cliente.Id.ToString();
+                MessageBox.Show($"O Cliente {cliente.Nome}, " +
+                    $"foi inserido com sucesso , com o ID {cliente.Id}");
+                txtId.Clear();
+                txtNome.Clear();
+                txtEmail.Clear();
+                txtCPF.Clear();
+                txtTelefone.Clear();
+                txtNome.Focus();
+
+                FrmClientes_Load(sender, e);// não sei o que é
+            }
+            else
+            {
+                MessageBox.Show("Falha ao gravar");
+            }
         }
 
         private void textBox6_TextChanged_1(object sender, EventArgs e)

@@ -5,6 +5,7 @@ namespace SysPecNSDesk
     internal static class Program
     {
         public static Usuario UsuarioLogado = new();
+        public static Cliente frmDgvClienteParaPedido = new();
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
