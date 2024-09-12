@@ -30,6 +30,7 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            mxtTelefone = new MaskedTextBox();
             btnInserir = new Button();
             textBox6 = new TextBox();
             label7 = new Label();
@@ -44,7 +45,6 @@
             Data_cad = new DataGridViewTextBoxColumn();
             Ativo = new DataGridViewCheckBoxColumn();
             txtEmail = new TextBox();
-            txtTelefone = new TextBox();
             txtCPF = new TextBox();
             txtNome = new TextBox();
             txtId = new TextBox();
@@ -56,6 +56,7 @@
             label2 = new Label();
             label1 = new Label();
             tabPage2 = new TabPage();
+            mxtCpf = new MaskedTextBox();
             brnInserir_Endereco = new Button();
             txtBuscaClientes_Endereco = new TextBox();
             dgvEndereco = new DataGridView();
@@ -80,7 +81,6 @@
             label8 = new Label();
             txtId_Endereco = new TextBox();
             txtidCliente_Endereco = new TextBox();
-            txtCEP_Endereco = new TextBox();
             txtLogradou_Endereco = new TextBox();
             txtNumero_Endereco = new TextBox();
             txtBairro_Endereco = new TextBox();
@@ -108,13 +108,13 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(mxtTelefone);
             tabPage1.Controls.Add(btnInserir);
             tabPage1.Controls.Add(textBox6);
             tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(dtmDataNasc);
             tabPage1.Controls.Add(dataGridView1);
             tabPage1.Controls.Add(txtEmail);
-            tabPage1.Controls.Add(txtTelefone);
             tabPage1.Controls.Add(txtCPF);
             tabPage1.Controls.Add(txtNome);
             tabPage1.Controls.Add(txtId);
@@ -133,6 +133,14 @@
             tabPage1.Text = "Clientes";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
+            // 
+            // mxtTelefone
+            // 
+            mxtTelefone.Location = new Point(233, 92);
+            mxtTelefone.Mask = "(99) 00000-0000";
+            mxtTelefone.Name = "mxtTelefone";
+            mxtTelefone.Size = new Size(100, 23);
+            mxtTelefone.TabIndex = 37;
             // 
             // btnInserir
             // 
@@ -240,13 +248,6 @@
             txtEmail.Size = new Size(174, 23);
             txtEmail.TabIndex = 31;
             // 
-            // txtTelefone
-            // 
-            txtTelefone.Location = new Point(233, 89);
-            txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(100, 23);
-            txtTelefone.TabIndex = 30;
-            // 
             // txtCPF
             // 
             txtCPF.Location = new Point(305, 34);
@@ -334,6 +335,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(mxtCpf);
             tabPage2.Controls.Add(brnInserir_Endereco);
             tabPage2.Controls.Add(txtBuscaClientes_Endereco);
             tabPage2.Controls.Add(dgvEndereco);
@@ -349,7 +351,6 @@
             tabPage2.Controls.Add(label8);
             tabPage2.Controls.Add(txtId_Endereco);
             tabPage2.Controls.Add(txtidCliente_Endereco);
-            tabPage2.Controls.Add(txtCEP_Endereco);
             tabPage2.Controls.Add(txtLogradou_Endereco);
             tabPage2.Controls.Add(txtNumero_Endereco);
             tabPage2.Controls.Add(txtBairro_Endereco);
@@ -365,6 +366,15 @@
             tabPage2.Text = "Endereco";
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
+            // 
+            // mxtCpf
+            // 
+            mxtCpf.Location = new Point(207, 52);
+            mxtCpf.Mask = "00000-000";
+            mxtCpf.Name = "mxtCpf";
+            mxtCpf.Size = new Size(119, 23);
+            mxtCpf.TabIndex = 38;
+            mxtCpf.MaskInputRejected += maskedTextBox1_MaskInputRejected;
             // 
             // brnInserir_Endereco
             // 
@@ -559,13 +569,6 @@
             txtidCliente_Endereco.Size = new Size(75, 23);
             txtidCliente_Endereco.TabIndex = 8;
             // 
-            // txtCEP_Endereco
-            // 
-            txtCEP_Endereco.Location = new Point(207, 52);
-            txtCEP_Endereco.Name = "txtCEP_Endereco";
-            txtCEP_Endereco.Size = new Size(123, 23);
-            txtCEP_Endereco.TabIndex = 7;
-            // 
             // txtLogradou_Endereco
             // 
             txtLogradou_Endereco.Location = new Point(352, 52);
@@ -645,7 +648,6 @@
         private DateTimePicker dtmDataNasc;
         private DataGridView dataGridView1;
         private TextBox txtEmail;
-        private TextBox txtTelefone;
         private TextBox txtCPF;
         private TextBox txtNome;
         private TextBox txtId;
@@ -659,7 +661,6 @@
         private TabPage tabPage2;
         private TextBox txtId_Endereco;
         private TextBox txtidCliente_Endereco;
-        private TextBox txtCEP_Endereco;
         private TextBox txtLogradou_Endereco;
         private TextBox txtNumero_Endereco;
         private TextBox txtBairro_Endereco;
@@ -697,5 +698,7 @@
         private DataGridViewTextBoxColumn Bairro;
         private DataGridViewCheckBoxColumn Cidade;
         private DataGridViewTextBoxColumn UF;
+        private MaskedTextBox mxtCpf;
+        private MaskedTextBox mxtTelefone;
     }
 }

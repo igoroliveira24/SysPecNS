@@ -1,4 +1,5 @@
 ﻿using MySqlX.XDevAPI;
+using NcMaster;
 using SysPecNSLib;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,9 @@ namespace SysPecNSDesk
 
             // carregando o combobox de niveis
             CarregaGrid();
-            CarregaGrid2();
+            CarregaGrid2();            
+            mxtCpf.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            mxtTelefone.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
         }
 
@@ -45,7 +48,7 @@ namespace SysPecNSDesk
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
@@ -133,7 +136,7 @@ namespace SysPecNSDesk
         {
             Endereco endereco = new(
                 Cliente.ObterporId(Convert.ToInt32(txtidCliente_Endereco.Text)),
-                txtCEP_Endereco.Text,
+                mxtCpf.Text,
                 txtLogradou_Endereco.Text,
                 txtNumero_Endereco.Text,
                 txtComplemento_Endereco.Text,
@@ -184,9 +187,9 @@ namespace SysPecNSDesk
         {
             Cliente cliente = new(
                 txtNome.Text,
-                txtCPF.Text,
-                txtTelefone.Text,
-                txtEmail.Text,                               
+                mxtCpf.Text,
+                mxtTelefone.Text,
+                txtEmail.Text,
                 dtmDataNasc.Value);
 
 
@@ -202,8 +205,8 @@ namespace SysPecNSDesk
                 txtId.Clear();
                 txtNome.Clear();
                 txtEmail.Clear();
-                txtCPF.Clear();
-                txtTelefone.Clear();
+                mxtCpf.Clear();
+                mxtTelefone.Clear();
                 txtNome.Focus();
 
                 FrmClientes_Load(sender, e);// não sei o que é
@@ -215,6 +218,16 @@ namespace SysPecNSDesk
         }
 
         private void textBox6_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCEP_Endereco_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }
