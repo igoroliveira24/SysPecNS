@@ -20,11 +20,11 @@ namespace SysPecNSDesk
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             int PosicaoLinha = dataGridView1.CurrentRow.Index;
             Program.frmDgvClienteParaPedido.Id = Convert.ToInt32(dataGridView1.Rows[PosicaoLinha].Cells[0].Value);
             Program.frmDgvClienteParaPedido.Nome = Convert.ToString(dataGridView1.Rows[PosicaoLinha].Cells[1].Value);
-            Program.frmDgvClienteParaPedido.CPF = Convert.ToString(dataGridView1.Rows[PosicaoLinha].Cells[2].Value);            
+            Program.frmDgvClienteParaPedido.CPF = Convert.ToString(dataGridView1.Rows[PosicaoLinha].Cells[2].Value);
             Close();
         }
 
@@ -61,6 +61,23 @@ namespace SysPecNSDesk
             }
 
 
+        }
+
+        private void FrmDgvClientesParaPedido_DoubleClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 0)
+            {
+                CarregaGrid(textBox1.Text);
+            }
+            else
+            {
+                CarregaGrid();
+            }
         }
     }
 }

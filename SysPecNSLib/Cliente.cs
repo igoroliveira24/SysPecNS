@@ -151,8 +151,9 @@ namespace SysPecNSLib
             }
             else
             {
-                cmd.CommandText = $"select * from clientes" +                   
-                   $"where nome like '%{nome}% order by nome limit 10';";            
+                cmd.CommandText = $"select * from clientes where nome like '%{nome}%' order by nome limit 10;";                   
+
+
             }
 
             var dr = cmd.ExecuteReader();
@@ -185,6 +186,7 @@ namespace SysPecNSLib
             cmd.Parameters.AddWithValue("spnome", Nome);
             cmd.Parameters.AddWithValue("sptelefone", Telefone);
             cmd.Parameters.AddWithValue("spdata_nasc", Data_nasc);
+            cmd.Connection.Close();
         }
 
         public static void Arquivar(int id)

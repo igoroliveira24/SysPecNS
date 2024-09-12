@@ -47,6 +47,7 @@ namespace SysPecNSLib
             cmd.CommandType = System.Data.CommandType.Text;//cmd tipo string ou tipo texto
             cmd.CommandText = $"insert niveis (nome, sigla) values ('{Nome}','{Sigla}')";//cmd recebe a representação em texto para executa-lo como comando sql no banco de dados
             cmd.ExecuteNonQuery();//executa um comando sql contra a conexão e retorna os numeros de linhas afetadas 
+            cmd.Connection.Close();
         }
 
         public static Nivel ObterPorId(int id)
@@ -64,7 +65,7 @@ namespace SysPecNSLib
                 nivel.Nome = dr.GetString(1);// nivel.nome recebe o que o dr lê na casa 1 da tabela
                 nivel.Sigla = dr.GetString(2);// nivel.sigla recebe o que o dr lê na casa 2 da tabela
             }
-
+            cmd.Connection.Close();
             return nivel;
         }
 
@@ -86,6 +87,7 @@ namespace SysPecNSLib
                         )
                     );
             }
+            cmd.Connection.Close();
             return lista;
         }
 
@@ -94,7 +96,7 @@ namespace SysPecNSLib
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"update niveis" + 
-                $"set nome = '{Nome}', sigla = '{Sigla}' where id = {Id}";
+                $"set nome = '{Nome}', sigla = '{Sigla}' where id = {Id}";            
             return cmd.ExecuteNonQuery() > 0 ? true : false;// neste caso return é um comando que retorna alguma coisa com verificações em booleano, "?" simula o se pegando o comando executado como true, ":" retorna falso 
                       
         }
@@ -106,7 +108,8 @@ namespace SysPecNSLib
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"delete from niveis where id = {Id};";
             cmd.ExecuteNonQuery();
-            
+            cmd.Connection.Close();
+
 
         }
     }

@@ -41,6 +41,7 @@
             label3 = new Label();
             txtUsuario = new TextBox();
             grbItens = new GroupBox();
+            label16 = new Label();
             label15 = new Label();
             label14 = new Label();
             txtCodBar = new TextBox();
@@ -76,6 +77,8 @@
             escontoItem = new Label();
             DescontoPedido = new Label();
             txt = new Label();
+            btnCancelaPedido = new Button();
+            btnUpdate = new Button();
             grbIdentificacao.SuspendLayout();
             grbItens.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvItensPedido).BeginInit();
@@ -83,6 +86,7 @@
             // 
             // grbIdentificacao
             // 
+            grbIdentificacao.Controls.Add(btnUpdate);
             grbIdentificacao.Controls.Add(label13);
             grbIdentificacao.Controls.Add(label12);
             grbIdentificacao.Controls.Add(label4);
@@ -152,9 +156,9 @@
             // 
             // btnInserePedido
             // 
-            btnInserePedido.Location = new Point(497, 44);
+            btnInserePedido.Location = new Point(497, 82);
             btnInserePedido.Name = "btnInserePedido";
-            btnInserePedido.Size = new Size(87, 58);
+            btnInserePedido.Size = new Size(87, 47);
             btnInserePedido.TabIndex = 5;
             btnInserePedido.Text = "Abrir";
             btnInserePedido.UseVisualStyleBackColor = true;
@@ -198,6 +202,7 @@
             // 
             // grbItens
             // 
+            grbItens.Controls.Add(label16);
             grbItens.Controls.Add(label15);
             grbItens.Controls.Add(label14);
             grbItens.Controls.Add(txtCodBar);
@@ -222,14 +227,23 @@
             grbItens.TabStop = false;
             grbItens.Text = "Itens do Pedido";
             // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(439, 64);
+            label16.Name = "label16";
+            label16.Size = new Size(23, 15);
+            label16.TabIndex = 17;
+            label16.Text = "R$:";
+            // 
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(439, 64);
+            label15.Location = new Point(468, 64);
             label15.Name = "label15";
-            label15.Size = new Size(23, 15);
+            label15.Size = new Size(28, 15);
             label15.TabIndex = 16;
-            label15.Text = "R$:";
+            label15.Text = "0,00";
             // 
             // label14
             // 
@@ -476,10 +490,13 @@
             // 
             // txtDescontodoPedido
             // 
+            txtDescontodoPedido.Enabled = false;
             txtDescontodoPedido.Location = new Point(668, 371);
             txtDescontodoPedido.Name = "txtDescontodoPedido";
             txtDescontodoPedido.Size = new Size(146, 23);
             txtDescontodoPedido.TabIndex = 8;
+            txtDescontodoPedido.Text = "0";
+            txtDescontodoPedido.TextChanged += txtDescontodoPedido_TextChanged;
             txtDescontodoPedido.Enter += FrmPedidoNovo_Enter;
             // 
             // btnFechar
@@ -538,11 +555,35 @@
             txt.TabIndex = 14;
             txt.Text = "Total";
             // 
+            // btnCancelaPedido
+            // 
+            btnCancelaPedido.BackColor = Color.Red;
+            btnCancelaPedido.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelaPedido.ForeColor = SystemColors.ControlLightLight;
+            btnCancelaPedido.Location = new Point(668, 66);
+            btnCancelaPedido.Name = "btnCancelaPedido";
+            btnCancelaPedido.Size = new Size(146, 60);
+            btnCancelaPedido.TabIndex = 15;
+            btnCancelaPedido.Text = "Cancelar";
+            btnCancelaPedido.UseVisualStyleBackColor = false;
+            btnCancelaPedido.Click += btnCancelaPedido_Click;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(497, 40);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(87, 29);
+            btnUpdate.TabIndex = 12;
+            btnUpdate.Text = "Atualizar";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
             // FrmPedidoNovo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(836, 528);
+            Controls.Add(btnCancelaPedido);
             Controls.Add(txt);
             Controls.Add(DescontoPedido);
             Controls.Add(escontoItem);
@@ -619,5 +660,8 @@
         private TextBox txtNomeClientes;
         private Label label14;
         private Label label15;
+        private Label label16;
+        private Button btnCancelaPedido;
+        private Button btnUpdate;
     }
 }

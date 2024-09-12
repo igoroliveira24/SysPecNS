@@ -37,6 +37,7 @@
             Data_nasc = new DataGridViewTextBoxColumn();
             Data_cad = new DataGridViewTextBoxColumn();
             Ativo = new DataGridViewCheckBoxColumn();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -108,6 +109,14 @@
             Ativo.Name = "Ativo";
             Ativo.ReadOnly = true;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(12, 86);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(853, 23);
+            textBox1.TabIndex = 34;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
             // FrmDgvClientesParaPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -115,11 +124,14 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(879, 395);
             ControlBox = false;
+            Controls.Add(textBox1);
             Controls.Add(dataGridView1);
             Name = "FrmDgvClientesParaPedido";
             Load += FrmDgvClientesParaPedido_Load;
+            DoubleClick += FrmDgvClientesParaPedido_DoubleClick;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -133,5 +145,6 @@
         private DataGridViewTextBoxColumn Data_nasc;
         private DataGridViewTextBoxColumn Data_cad;
         private DataGridViewCheckBoxColumn Ativo;
+        private TextBox textBox1;
     }
 }

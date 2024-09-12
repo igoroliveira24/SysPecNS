@@ -90,19 +90,30 @@ public partial class FrmPedidoNovo : Form
             double.Parse(txtQuantidadeItem.Text),
             double.Parse(txtDescontoItens.Text)
             );
-        item.Inserir();
-
-        produto = new();
-        txtDescontoItens.Text = "0";
-        txtDescricaoItem.Clear();
-        txtValorUnitItem.Text = "0";
-        txtQuantidadeItem.Text = "1";
-        txtCodBar.Clear();
-        txtCodBar.Focus();
+        if (double.Parse(label15.Text) > double.Parse(txtDescontoItens.Text))
+        {
 
 
+            item.Inserir();
 
-        PreencherGridItems();
+            produto = new();
+            txtDescontoItens.Text = "0";
+            txtDescricaoItem.Clear();
+            txtValorUnitItem.Text = "0";
+            txtQuantidadeItem.Text = "1";
+            txtCodBar.Clear();
+            txtCodBar.Focus();
+            txtDescontodoPedido.Enabled = true;
+
+            PreencherGridItems();
+        }
+        else
+        {
+            MessageBox.Show("O Valor de Desconto é Maior do que o permitido");
+            txtDescontoItens.Text = Convert.ToString(0.00);
+        }
+
+
 
     }
 
@@ -157,13 +168,29 @@ public partial class FrmPedidoNovo : Form
     {
         double total = double.Parse(txtSubTotal.Text) - double.Parse(textBox2.Text) - double.Parse(txtDescontodoPedido.Text);
         textBox4.Text = total.ToString("#0.00");
-        if (txtTotal.Text == textBox4.Text)
+        if (double.Parse(txtTotal.Text) > double.Parse(txtDescontodoPedido.Text) || (double.Parse(txtTotal.Text) == double.Parse(txtDescontodoPedido.Text)))
         {
-            this.Close();
+            if (txtTotal.Text == textBox4.Text)
+            {
+                Pedido pedido = new(
+                    int.Parse(txtIdPedido.Text),
+                    "F"
+                );
+
+                pedido.AlterarStatus();
+
+                Close();
+            }
+            else
+            {
+                txtTotal.Text = textBox4.Text;
+
+            }
         }
         else
         {
-            txtTotal.Text = textBox4.Text;
+            MessageBox.Show("O valor do desconto é maior que o preço do pedido");
+            txtDescontodoPedido.Text = Convert.ToString(0);
         }
     }
 
@@ -174,9 +201,62 @@ public partial class FrmPedidoNovo : Form
 
     private void txtQuantidadeItem_TextChanged(object sender, EventArgs e)
     {
-        itempedido = ItemPedido.ObterPoId(txtQuantidadeItem.Text);
+        if (txtQuantidadeItem.Text == string.Empty)
+        {
+            txtQuantidadeItem.Text = Convert.ToString(1);
+        }
+        else
+        {
+            double desconto = 0;
+            desconto = double.Parse($"{produto.ValorUnit * double.Parse(txtQuantidadeItem.Text) * produto.ClasseDesconto}");
+            label15.Text = desconto.ToString("#0.00");
 
-        label15.Text = $"{produto.ValorUnit * itempedido.Quantidade * produto.ClasseDesconto}";
+
+        }
+
+    }
+
+    private void txtDescontodoPedido_TextChanged(object sender, EventArgs e)
+    {
+        if (txtDescontodoPedido.Text == string.Empty)
+        {
+            txtDescontodoPedido.Text = Convert.ToString(0);
+        }
+        else
+        {
+            double desconto = 0;
+            desconto = double.Parse($"{double.Parse(txtSubTotal.Text) - double.Parse(textBox2.Text) - double.Parse(txtDescontodoPedido.Text)}");
+            textBox4.Text = desconto.ToString("#0.00");
+
+
+        }
+    }
+
+    private void btnCancelaPedido_Click(object sender, EventArgs e)
+    {
+        var msg = MessageBox.Show("Deseja realmente cancelar o pedido", "Tem certeza?", MessageBoxButtons.YesNo);
+        if (msg == DialogResult.Yes)
+        {
+            Pedido pedido = new(
+            int.Parse(txtIdPedido.Text),
+            "C"
+            );
+            pedido.AlterarStatus();
+            Close();
+        }
+
+
+
+
+
+
+    }
+
+    private void btnUpdate_Click(object sender, EventArgs e)
+    {
+             
+
+        
     }
 }
 

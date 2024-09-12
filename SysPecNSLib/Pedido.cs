@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,12 @@ namespace SysPecNSLib
 
         public Pedido()
         {
-            
+
+        }
+        public Pedido(int id, string? estatus)
+        {
+            Id = id;
+            Estatus = estatus;
         }
         public Pedido(Usuario usuario, Cliente cliente, DateTime data, string? estatus, double desconto)
         {
@@ -68,6 +74,7 @@ namespace SysPecNSLib
             cmd.Parameters.AddWithValue("spcliente_id", Cliente.Id);
             cmd.Parameters.AddWithValue("spusuario_id", Usuario.Id);
             Id = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Connection.Close();
 
         }
 
@@ -89,8 +96,9 @@ namespace SysPecNSLib
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = $"update pedidos set status = {Estatus} where id = {Id}";
+            cmd.CommandText = $"update pedidos set status = '{Estatus}' where id = {Id}";
             cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
         }
 
         public void AtualizarDesconto()
@@ -99,6 +107,7 @@ namespace SysPecNSLib
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = $"update pedidos set desconto = {Desconto} where id = {Id}";
             cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
 
         }
 
@@ -126,7 +135,7 @@ namespace SysPecNSLib
                     );
             }
 
-            
+            cmd.Connection.Close();
             return pedido;
         }
 
@@ -159,7 +168,7 @@ namespace SysPecNSLib
                     )
                 );
             }
-
+            cmd.Connection.Close();
             return pedidos;
         }
         /// <summary>
@@ -191,7 +200,7 @@ namespace SysPecNSLib
                     )
                 );
             }
-
+            cmd.Connection.Close();
             return pedidos;
         }
 
@@ -223,7 +232,7 @@ namespace SysPecNSLib
                     )
                 );
             }
-
+            cmd.Connection.Close();
             return pedidos;
         }
     }

@@ -47,6 +47,7 @@ namespace SysPecNSLib
             cmd.Parameters.AddWithValue("spnome", Nome);
             cmd.Parameters.AddWithValue("spsigla", Sigla);
             Id = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Connection.Close();
         }
 
         public static Categoria ObterPorId(int id)
@@ -60,8 +61,9 @@ namespace SysPecNSLib
                 categoria = new(dr.GetInt32(0), dr.GetString(1), null);
             }
 
-
+            cmd.Connection.Close();
             return categoria;
+            
         }
         
         public static List<Categoria> ObterLista()//Objeto da classe Endereço em Lista
@@ -75,7 +77,7 @@ namespace SysPecNSLib
                 categorias.Add(new(dr.GetInt32(0), dr.GetString(1),null));//listagem em virtude dos metodos construtores
             }
 
-
+            cmd.Connection.Close();
             return categorias;
         }
 
@@ -88,6 +90,7 @@ namespace SysPecNSLib
             cmd.Parameters.AddWithValue("spnome", Nome);
             cmd.Parameters.AddWithValue("spsigla", Sigla);
             cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
         }
 
         public void Deletar()
@@ -95,6 +98,7 @@ namespace SysPecNSLib
             var cmd = Banco.Abrir();
             cmd.CommandText = $"delete from categorias where id = {Id}";
             cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
         }
     }
 }

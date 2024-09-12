@@ -103,7 +103,8 @@ namespace SysPecNSLib
             cmd.Parameters.AddWithValue("spuf", UF);
             cmd.Parameters.AddWithValue("sptipo_endereco", Tipo);
 
-           // return cmd.ExecuteNonQuery() > -1 ? true : false;
+            // return cmd.ExecuteNonQuery() > -1 ? true : false;
+            cmd.Connection.Close();
 
 
         }
