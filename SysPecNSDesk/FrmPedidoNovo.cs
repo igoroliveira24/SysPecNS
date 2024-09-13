@@ -83,35 +83,62 @@ public partial class FrmPedidoNovo : Form
     private void btnAddItem_Click(object sender, EventArgs e)
     {
 
-        ItemPedido item = new(
-            int.Parse(txtIdPedido.Text),
-            produto,
-            produto.ValorUnit,
-            double.Parse(txtQuantidadeItem.Text),
-            double.Parse(txtDescontoItens.Text)
-            );
-        if (double.Parse(label15.Text) > double.Parse(txtDescontoItens.Text))
-        {
+
+       
+       Estoque estoque = new();
+
+        
+        
+            if(txtCodBar.Text == produto.CodBar)
+            {
+            estoque.ProdutoId = produto;
+
+            estoque.ProdutoId.Id = produto.Id;            
+            
+
+                if (int.Parse(txtQuantidadeItem.Text) <= estoque.Quantidade)
+                {         
+                    ItemPedido item = new(
+                    int.Parse(txtIdPedido.Text),
+                    produto,
+                    produto.ValorUnit,
+                    double.Parse(txtQuantidadeItem.Text),
+                    double.Parse(txtDescontoItens.Text)
+                    );
+                    if (double.Parse(label15.Text) > double.Parse(txtDescontoItens.Text))
+                    {
 
 
-            item.Inserir();
+                        item.Inserir();
 
-            produto = new();
-            txtDescontoItens.Text = "0";
-            txtDescricaoItem.Clear();
-            txtValorUnitItem.Text = "0";
-            txtQuantidadeItem.Text = "1";
-            txtCodBar.Clear();
-            txtCodBar.Focus();
-            txtDescontodoPedido.Enabled = true;
+                        produto = new();
+                        txtDescontoItens.Text = "0";
+                        txtDescricaoItem.Clear();
+                        txtValorUnitItem.Text = "0";
+                        txtQuantidadeItem.Text = "1";
+                        txtCodBar.Clear();
+                        txtCodBar.Focus();
+                        txtDescontodoPedido.Enabled = true;
 
-            PreencherGridItems();
-        }
-        else
-        {
-            MessageBox.Show("O Valor de Desconto é Maior do que o permitido");
-            txtDescontoItens.Text = Convert.ToString(0.00);
-        }
+                        PreencherGridItems();
+                    }
+                    else
+                    {
+                        MessageBox.Show("O Valor de Desconto é Maior do que o permitido");
+                        txtDescontoItens.Text = Convert.ToString(0.00);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("A Quantidade excede o numero de estoque");
+                    txtQuantidadeItem.Clear();
+                }
+            }
+            
+        
+        
+
+
 
 
 

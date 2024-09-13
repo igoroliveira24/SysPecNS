@@ -161,5 +161,10 @@ namespace SysPecNSDesk
             id = Convert.ToInt32(dgvUsuarios.Rows[PosicaoLinha].Cells[0].Value);
             MessageBox.Show(id.ToString());
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

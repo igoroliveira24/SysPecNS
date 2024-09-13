@@ -194,6 +194,7 @@
             nudEstoqueMinimo.Name = "nudEstoqueMinimo";
             nudEstoqueMinimo.Size = new Size(36, 23);
             nudEstoqueMinimo.TabIndex = 21;
+            nudEstoqueMinimo.ValueChanged += nudEstoqueMinimo_ValueChanged;
             // 
             // btnConsulta
             // 

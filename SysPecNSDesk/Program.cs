@@ -6,6 +6,7 @@ namespace SysPecNSDesk
     {
         public static Usuario UsuarioLogado = new();
         public static Cliente frmDgvClienteParaPedido = new();
+        public static FrmEstoque Estoque = new();
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

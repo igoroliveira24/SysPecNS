@@ -146,5 +146,10 @@ namespace SysPecNSDesk
         {
 
         }
+
+        private void nudEstoqueMinimo_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

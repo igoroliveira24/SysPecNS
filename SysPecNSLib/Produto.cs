@@ -20,6 +20,7 @@ namespace SysPecNSLib
         public double ClasseDesconto { get; set; }
         public byte[]? Imagem { get; set; }
         public DateTime? DataCad { get; set; }
+        public Estoque Estoque { get; set; }
 
         public Produto() { Categoria = new(); }
         

@@ -18,11 +18,13 @@ namespace SysPecNSLib
         public string? Estatus { get; set; }
         public double Desconto { get; set; }
         public List<ItemPedido> Itens { get; set; }
+        
 
         public Pedido()
         {
 
-        }
+        }            
+       
         public Pedido(int id, string? estatus)
         {
             Id = id;
@@ -235,6 +237,8 @@ namespace SysPecNSLib
             cmd.Connection.Close();
             return pedidos;
         }
+
+        
     }
 }
 

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedidoNovo));
             grbIdentificacao = new GroupBox();
+            btnUpdate = new Button();
             label13 = new Label();
             label12 = new Label();
             label4 = new Label();
@@ -78,7 +79,6 @@
             DescontoPedido = new Label();
             txt = new Label();
             btnCancelaPedido = new Button();
-            btnUpdate = new Button();
             grbIdentificacao.SuspendLayout();
             grbItens.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvItensPedido).BeginInit();
@@ -104,6 +104,16 @@
             grbIdentificacao.TabStop = false;
             grbIdentificacao.Text = "Identificação";
             grbIdentificacao.Enter += groupBox1_Enter;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(497, 40);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(87, 29);
+            btnUpdate.TabIndex = 12;
+            btnUpdate.Text = "Atualizar";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // label13
             // 
@@ -567,16 +577,6 @@
             btnCancelaPedido.Text = "Cancelar";
             btnCancelaPedido.UseVisualStyleBackColor = false;
             btnCancelaPedido.Click += btnCancelaPedido_Click;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Location = new Point(497, 40);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(87, 29);
-            btnUpdate.TabIndex = 12;
-            btnUpdate.Text = "Atualizar";
-            btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
             // 
             // FrmPedidoNovo
             // 

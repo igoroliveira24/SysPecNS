@@ -247,6 +247,7 @@
             btnEditar.Text = "&Editar";
             btnEditar.TextImageRelation = TextImageRelation.ImageAboveText;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
             // 
