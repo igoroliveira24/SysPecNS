@@ -17,6 +17,13 @@ namespace SysPecNSLib
         {
 
         }
+
+        public Estoque(int quantidade)
+        {
+            
+            Quantidade = quantidade;
+
+        }
         public Estoque(Produto produtoId, int quantidade)
         {
             ProdutoId = produtoId;
@@ -76,6 +83,26 @@ namespace SysPecNSLib
 
             cmd.Connection.Close();
             return estoque;
+        }
+
+
+        public static Estoque ObterQuantidadePorProdutoId(int id)
+        {
+            Estoque quantidade = new();
+            var cmd = Banco.Abrir();
+            cmd.CommandText = $"select quantidade from estoques where produto_id = {id} ";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                quantidade =
+                    new(                        
+                        dr.GetInt32(0)
+                        
+                        );
+            }
+            cmd.Connection.Close();
+            return quantidade;
+
         }
     }
 }

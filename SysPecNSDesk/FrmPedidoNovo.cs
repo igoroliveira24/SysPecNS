@@ -87,13 +87,7 @@ public partial class FrmPedidoNovo : Form
        
        Estoque estoque = new();
 
-        
-        
-            if(txtCodBar.Text == produto.CodBar)
-            {
-            estoque.ProdutoId = produto;
-
-            estoque.ProdutoId.Id = produto.Id;            
+        estoque = Estoque.ObterQuantidadePorProdutoId(produto.Id);
             
 
                 if (int.Parse(txtQuantidadeItem.Text) <= estoque.Quantidade)
@@ -133,7 +127,7 @@ public partial class FrmPedidoNovo : Form
                     MessageBox.Show("A Quantidade excede o numero de estoque");
                     txtQuantidadeItem.Clear();
                 }
-            }
+            
             
         
         
